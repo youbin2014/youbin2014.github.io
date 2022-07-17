@@ -18,7 +18,7 @@
   <url>
     <loc>https://youbin2014.github.io/event/</loc><lastmod>2030-06-01T13:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
   <url>
-    <loc></loc><lastmod>2020-12-13T00:00:00+00:00</lastmod><changefreq>weekly</changefreq><xhtml:link
+    <loc></loc><lastmod>2022-07-16T00:00:00+00:00</lastmod><changefreq>weekly</changefreq><xhtml:link
       rel="alternate"
       hreflang="zh"
       href="https://youbin2014.github.io/zh/authors/"
@@ -27,6 +27,42 @@
       hreflang="en"
       href=""
     /></url>
+  <url>
+    <loc>https://youbin2014.github.io/publication-type/1/</loc><lastmod>2022-07-16T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
+  <url>
+    <loc></loc><lastmod>2022-07-16T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
+  <url>
+    <loc></loc><lastmod>2022-07-16T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
+  <url>
+    <loc></loc><lastmod>2022-07-16T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
+  <url>
+    <loc>https://youbin2014.github.io/publication/ccs2022_ldp/</loc><lastmod>2022-07-16T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
+  <url>
+    <loc>https://youbin2014.github.io/publication_types/</loc><lastmod>2022-07-16T00:00:00+00:00</lastmod><changefreq>weekly</changefreq><xhtml:link
+      rel="alternate"
+      hreflang="zh"
+      href="https://youbin2014.github.io/zh/publication_types/"
+    /><xhtml:link
+      rel="alternate"
+      hreflang="en"
+      href="https://youbin2014.github.io/publication_types/"
+    /></url>
+  <url>
+    <loc>https://youbin2014.github.io/publication/</loc><lastmod>2022-07-16T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
+  <url>
+    <loc></loc><lastmod>2022-07-16T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
+  <url>
+    <loc></loc><lastmod>2022-07-16T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
+  <url>
+    <loc>https://youbin2014.github.io/publication/anirs/</loc><lastmod>2022-07-10T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
+  <url>
+    <loc></loc><lastmod>2022-07-03T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
+  <url>
+    <loc>https://youbin2014.github.io/publication/eccv2022_unicr/</loc><lastmod>2022-07-03T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
+  <url>
+    <loc>https://youbin2014.github.io/publication/aneye/</loc><lastmod>2022-02-03T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
+  <url>
+    <loc></loc><lastmod>2022-02-03T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
   <url>
     <loc>https://youbin2014.github.io/tag/academic/</loc><lastmod>2020-12-13T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
   <url>
@@ -41,8 +77,6 @@
     /></url>
   <url>
     <loc>https://youbin2014.github.io/category/demo/</loc><lastmod>2020-12-13T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
-  <url>
-    <loc></loc><lastmod>2020-12-13T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
   <url>
     <loc>https://youbin2014.github.io/post/</loc><lastmod>2020-12-13T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
   <url>
@@ -64,6 +98,14 @@
   <url>
     <loc>https://youbin2014.github.io/category/%E6%95%99%E7%A8%8B/</loc><lastmod>2020-12-13T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
   <url>
+    <loc></loc><lastmod>2020-07-03T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
+  <url>
+    <loc></loc><lastmod>2020-07-03T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
+  <url>
+    <loc>https://youbin2014.github.io/publication/cvprworkshop2020/</loc><lastmod>2020-07-03T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
+  <url>
+    <loc>https://youbin2014.github.io/publication/icpr2020/</loc><lastmod>2020-01-03T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
+  <url>
     <loc>https://youbin2014.github.io/slides/</loc><lastmod>2019-02-05T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
   <url>
     <loc>https://youbin2014.github.io/slides/example/</loc><lastmod>2019-02-05T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
@@ -72,22 +114,4 @@
   <url>
     <loc>https://youbin2014.github.io/project/example/</loc><lastmod>2016-04-27T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
   <url>
-    <loc>https://youbin2014.github.io/project/</loc><lastmod>2016-04-27T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
-  <url>
-    <loc>https://youbin2014.github.io/publication-type/1/</loc><lastmod>2013-07-01T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
-  <url>
-    <loc>https://youbin2014.github.io/publication/example/</loc><lastmod>2013-07-01T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
-  <url>
-    <loc>https://youbin2014.github.io/publication_types/</loc><lastmod>2013-07-01T00:00:00+00:00</lastmod><changefreq>weekly</changefreq><xhtml:link
-      rel="alternate"
-      hreflang="zh"
-      href="https://youbin2014.github.io/zh/publication_types/"
-    /><xhtml:link
-      rel="alternate"
-      hreflang="en"
-      href="https://youbin2014.github.io/publication_types/"
-    /></url>
-  <url>
-    <loc>https://youbin2014.github.io/publication/</loc><lastmod>2013-07-01T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url>
-  <url>
-    <loc></loc><lastmod>2013-07-01T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url></urlset>
+    <loc>https://youbin2014.github.io/project/</loc><lastmod>2016-04-27T00:00:00+00:00</lastmod><changefreq>weekly</changefreq></url></urlset>

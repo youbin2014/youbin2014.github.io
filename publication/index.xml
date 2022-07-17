@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Publications | Hanbin Hong&#39;s</title>
+    <title>Publications | Hanbin Hong</title>
     <link>https://youbin2014.github.io/publication/</link>
       <atom:link href="https://youbin2014.github.io/publication/index.xml" rel="self" type="application/rss+xml" />
     <description>Publications</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 01 Jul 2013 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Sat, 16 Jul 2022 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://youbin2014.github.io/media/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
       <title>Publications</title>
@@ -13,22 +13,51 @@
     </image>
     
     <item>
-      <title>An example conference paper</title>
-      <link>https://youbin2014.github.io/publication/example/</link>
-      <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
-      <guid>https://youbin2014.github.io/publication/example/</guid>
-      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;div&gt;
-    Click the &lt;em&gt;Cite&lt;/em&gt; button above to demo the feature to enable visitors to import publication metadata into their reference management software.
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;div&gt;
-    Create your slides in Markdown - click the &lt;em&gt;Slides&lt;/em&gt; button to check out the example.
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;Supplementary notes can be added here, including &lt;a href=&#34;https://wowchemy.com/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;code, math, and images&lt;/a&gt;.&lt;/p&gt;
-</description>
+      <title>PrivLBS: Local Differential Privacy for Location-Based Services with Staircase Randomized Response</title>
+      <link>https://youbin2014.github.io/publication/ccs2022_ldp/</link>
+      <pubDate>Sat, 16 Jul 2022 00:00:00 +0000</pubDate>
+      <guid>https://youbin2014.github.io/publication/ccs2022_ldp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Certified Adversarial Robustness via Anisotropic Randomized Smoothing</title>
+      <link>https://youbin2014.github.io/publication/anirs/</link>
+      <pubDate>Sun, 10 Jul 2022 00:00:00 +0000</pubDate>
+      <guid>https://youbin2014.github.io/publication/anirs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>UniCR: Universally Approximated Certified Robustness via Randomized Smoothing</title>
+      <link>https://youbin2014.github.io/publication/eccv2022_unicr/</link>
+      <pubDate>Sun, 03 Jul 2022 00:00:00 +0000</pubDate>
+      <guid>https://youbin2014.github.io/publication/eccv2022_unicr/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>An Eye for an Eye: Defending against Gradient-based Attacks with Gradients</title>
+      <link>https://youbin2014.github.io/publication/aneye/</link>
+      <pubDate>Thu, 03 Feb 2022 00:00:00 +0000</pubDate>
+      <guid>https://youbin2014.github.io/publication/aneye/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Rit-18: A novel dataset for compositional group activity understanding</title>
+      <link>https://youbin2014.github.io/publication/cvprworkshop2020/</link>
+      <pubDate>Fri, 03 Jul 2020 00:00:00 +0000</pubDate>
+      <guid>https://youbin2014.github.io/publication/cvprworkshop2020/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Privacy Attributes-aware Message Passing Neural Network for Visual Privacy Attributes Classification</title>
+      <link>https://youbin2014.github.io/publication/icpr2020/</link>
+      <pubDate>Fri, 03 Jan 2020 00:00:00 +0000</pubDate>
+      <guid>https://youbin2014.github.io/publication/icpr2020/</guid>
+      <description></description>
     </item>
     
   </channel>
