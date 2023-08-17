@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>3 | Hanbin Hong</title>
+    <link>https://youbin2014.github.io/publication-type/3/</link>
+      <atom:link href="https://youbin2014.github.io/publication-type/3/index.xml" rel="self" type="application/rss+xml" />
+    <description>3</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Fri, 03 Mar 2023 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://youbin2014.github.io/media/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
+      <title>3</title>
+      <link>https://youbin2014.github.io/publication-type/3/</link>
+    </image>
+    
+    <item>
+      <title>Certifiable Black-Box Attack: Ensuring Provably Successful Attack for Adversarial Examples</title>
+      <link>https://youbin2014.github.io/publication/certifiedattack/</link>
+      <pubDate>Fri, 03 Mar 2023 00:00:00 +0000</pubDate>
+      <guid>https://youbin2014.github.io/publication/certifiedattack/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Certified Adversarial Robustness via Anisotropic Randomized Smoothing</title>
+      <link>https://youbin2014.github.io/publication/anirs/</link>
+      <pubDate>Sun, 10 Jul 2022 00:00:00 +0000</pubDate>
+      <guid>https://youbin2014.github.io/publication/anirs/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

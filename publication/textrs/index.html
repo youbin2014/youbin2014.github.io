@@ -64,10 +64,10 @@
   
     
   
-  <meta name="description" content="We propose the first LDP framework for a variety of location-based services (namely ``PrivLBS&#39;&#39;), which privately collects and analyzes user locations with high utility" />
+  <meta name="description" content="We propose a framework to guarantee the certifiable robustness of language model against multiple practical attacks in NLP." />
 
   
-  <link rel="alternate" hreflang="en-us" href="https://youbin2014.github.io/publication/ccs2022_ldp/" />
+  <link rel="alternate" hreflang="en-us" href="https://youbin2014.github.io/publication/textrs/" />
 
   
   
@@ -282,7 +282,7 @@
   <link rel="icon" type="image/png" href="/media/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_32x32_fill_lanczos_center_3.png" />
   <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_180x180_fill_lanczos_center_3.png" />
 
-  <link rel="canonical" href="https://youbin2014.github.io/publication/ccs2022_ldp/" />
+  <link rel="canonical" href="https://youbin2014.github.io/publication/textrs/" />
 
   
   
@@ -308,18 +308,18 @@
     <meta property="twitter:creator" content="@wowchemy" />
   
   <meta property="og:site_name" content="Hanbin Hong" />
-  <meta property="og:url" content="https://youbin2014.github.io/publication/ccs2022_ldp/" />
-  <meta property="og:title" content="PrivLBS: Local Differential Privacy for Location-Based Services with Staircase Randomized Response | Hanbin Hong" />
-  <meta property="og:description" content="We propose the first LDP framework for a variety of location-based services (namely ``PrivLBS&#39;&#39;), which privately collects and analyzes user locations with high utility" /><meta property="og:image" content="https://youbin2014.github.io/media/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png" />
+  <meta property="og:url" content="https://youbin2014.github.io/publication/textrs/" />
+  <meta property="og:title" content="Text-CRS: A Generalized Certified Robustness Framework against Textual Adversarial Attacks | Hanbin Hong" />
+  <meta property="og:description" content="We propose a framework to guarantee the certifiable robustness of language model against multiple practical attacks in NLP." /><meta property="og:image" content="https://youbin2014.github.io/media/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png" />
     <meta property="twitter:image" content="https://youbin2014.github.io/media/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png" /><meta property="og:locale" content="en-us" />
   
     
       <meta
         property="article:published_time"
-        content="2022-07-01T00:00:00&#43;00:00"
+        content="2023-08-16T00:00:00&#43;00:00"
       />
     
-    <meta property="article:modified_time" content="2022-07-16T00:00:00&#43;00:00">
+    <meta property="article:modified_time" content="2023-08-16T00:00:00&#43;00:00">
   
 
   
@@ -341,16 +341,16 @@
   "@type": "Article",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://youbin2014.github.io/publication/ccs2022_ldp/"
+    "@id": "https://youbin2014.github.io/publication/textrs/"
   },
-  "headline": "PrivLBS: Local Differential Privacy for Location-Based Services with Staircase Randomized Response",
+  "headline": "Text-CRS: A Generalized Certified Robustness Framework against Textual Adversarial Attacks",
   
-  "datePublished": "2022-07-01T00:00:00Z",
-  "dateModified": "2022-07-16T00:00:00Z",
+  "datePublished": "2023-08-16T00:00:00Z",
+  "dateModified": "2023-08-16T00:00:00Z",
   
   "author": {
     "@type": "Person",
-    "name": "Han Wang"
+    "name": "Xinyu Zhang"
   },
   
   "publisher": {
@@ -361,7 +361,7 @@
       "url": "https://youbin2014.github.io/media/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_3.png"
     }
   },
-  "description": "We propose the first LDP framework for a variety of location-based services (namely ``PrivLBS''), which privately collects and analyzes user locations with high utility"
+  "description": "We propose a framework to guarantee the certifiable robustness of language model against multiple practical attacks in NLP."
 }
 </script>
 
@@ -377,11 +377,11 @@
 
 
 
-  <title>PrivLBS: Local Differential Privacy for Location-Based Services with Staircase Randomized Response | Hanbin Hong</title>
+  <title>Text-CRS: A Generalized Certified Robustness Framework against Textual Adversarial Attacks | Hanbin Hong</title>
 </head>
 
 
-<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="5628d4f9422298d67aa70604bf077231" >
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="2a2a3442082e0471d02ae6b785b5c721" >
 
   
   
@@ -717,7 +717,7 @@
   
   
 <div class="article-container pt-3">
-  <h1>PrivLBS: Local Differential Privacy for Location-Based Services with Staircase Randomized Response</h1>
+  <h1>Text-CRS: A Generalized Certified Robustness Framework against Textual Adversarial Attacks</h1>
 
   
 
@@ -735,11 +735,13 @@
     
 
   <span >
-      Han Wang</span>, <span class="author-highlighted">
+      Xinyu Zhang</span>, <span class="author-highlighted">
       Hanbin Hong</span>, <span >
-      Li Xiong</span>, <span >
-      Zhan Qin</span>, <span >
-      Yuan Hong</span>
+      Yuan Hong</span>, <span >
+      Peng Huang</span>, <span >
+      Binghui Wang</span>, <span >
+      Zhongjie Ba</span>, <span >
+      Kui REN</span>
   </div>
   
   
@@ -750,7 +752,7 @@
     
       
     
-    July, 2022
+    August, 2023
   </span>
   
 
@@ -788,14 +790,10 @@
 
 
 
-<a class="btn btn-outline-primary btn-page-header" href="/publication/ccs2022_ldp/CCS2022_LDP.pdf" target="_blank" rel="noopener">
-  PDF
-</a>
-
 
 
 <a href="#" class="btn btn-outline-primary btn-page-header js-cite-modal"
-        data-filename="/publication/ccs2022_ldp/cite.bib">
+        data-filename="/publication/textrs/cite.bib">
   Cite
 </a>
 
@@ -825,7 +823,7 @@
 
     
     <h3>Abstract</h3>
-    <p class="pub-abstract">Location-based services (LBS) have been significantly developed and widely deployed in mobile devices. It is also well-known that LBS applications may result in severe privacy concerns by collecting sensitive locations. A strong privacy model &lsquo;&rsquo;local differential privacy&rsquo;&rsquo; (LDP) has been recently deployed in many different applications (e.g., Google RAPPOR, iOS, and Microsoft Telemetry) but not effective for LBS applications due to the low utility of existing LDP mechanisms. To address such deficiency, we propose the first LDP framework for a variety of location-based services (namely &lsquo;&lsquo;L-SRR&rsquo;&rsquo;), which privately collects and analyzes user locations with high utility. Specifically, we design a novel randomization mechanism &lsquo;&lsquo;Staircase Randomized Response&rsquo;&rsquo; (SRR) and extend the empirical estimation to significantly boost the utility for SRR in different LBS applications (e.g., traffic density estimation, and k-nearest neighbors). We have conducted extensive experiments on four real LBS datasets by benchmarking with other LDP schemes in practical applications. The experimental results demonstrate that L-SRR significantly outperforms them.</p>
+    <p class="pub-abstract">The language models, especially the basic text classification models, have been shown to be susceptible to textual adversarial attacks such as synonym substitution and word insertion attacks. To defend against such attacks, a growing body of research has been devoted to improving the model robustness. However, providing provable robustness guarantees instead of empirical robustness is still widely unexplored. In this paper, we propose Text-CRS, a generalized certified robustness framework for natural language processing (NLP) based on randomized smoothing. To our best knowledge, existing certified schemes for NLP can only certify the robustness against  perturbations in synonym substitution attacks. Representing each word-level adversarial operation (i.e., synonym substitution, word reordering, insertion, and deletion) as a combination of permutation and embedding transformation, we propose novel smoothing theorems to derive robustness bounds in both permutation and embedding space against such adversarial operations. To further improve certified accuracy and radius, we consider the numerical relationships between discrete words and select proper noise distributions for the randomized smoothing. Finally, we conduct substantial experiments on multiple language models and datasets. Text-CRS can address all four different word-level adversarial operations and achieve a significant accuracy improvement. We also provide the first benchmark on certified accuracy and radius of four word-level operations, besides outperforming the state-of-the-art certification against synonym substitution attacks.</p>
     
 
     
@@ -836,8 +834,8 @@
         <div class="row">
           <div class="col-12 col-md-3 pub-row-heading">Type</div>
           <div class="col-12 col-md-9">
-            <a href="/publication/#1">
-              Conference paper
+            <a href="/publication/#2">
+              Journal article
             </a>
           </div>
         </div>
@@ -853,7 +851,7 @@
       <div class="col-md-10">
         <div class="row">
           <div class="col-12 col-md-3 pub-row-heading">Publication</div>
-          <div class="col-12 col-md-9">In <em>ACM Conference on Computer and Communications Security (CCS)</em></div>
+          <div class="col-12 col-md-9">In <em>Oakland IEEE S&amp;P 2024</em></div>
         </div>
       </div>
       <div class="col-md-1"></div>
@@ -883,7 +881,7 @@
       
       
       <li>
-        <a href="https://twitter.com/intent/tweet?url=https://youbin2014.github.io/publication/ccs2022_ldp/&amp;text=PrivLBS:%20Local%20Differential%20Privacy%20for%20Location-Based%20Services%20with%20Staircase%20Randomized%20Response" target="_blank" rel="noopener" class="share-btn-twitter" aria-label="twitter">
+        <a href="https://twitter.com/intent/tweet?url=https://youbin2014.github.io/publication/textrs/&amp;text=Text-CRS:%20A%20Generalized%20Certified%20Robustness%20Framework%20against%20Textual%20Adversarial%20Attacks" target="_blank" rel="noopener" class="share-btn-twitter" aria-label="twitter">
           <i class="fab fa-twitter"></i>
         </a>
       </li>
@@ -896,7 +894,7 @@
       
       
       <li>
-        <a href="https://www.facebook.com/sharer.php?u=https://youbin2014.github.io/publication/ccs2022_ldp/&amp;t=PrivLBS:%20Local%20Differential%20Privacy%20for%20Location-Based%20Services%20with%20Staircase%20Randomized%20Response" target="_blank" rel="noopener" class="share-btn-facebook" aria-label="facebook">
+        <a href="https://www.facebook.com/sharer.php?u=https://youbin2014.github.io/publication/textrs/&amp;t=Text-CRS:%20A%20Generalized%20Certified%20Robustness%20Framework%20against%20Textual%20Adversarial%20Attacks" target="_blank" rel="noopener" class="share-btn-facebook" aria-label="facebook">
           <i class="fab fa-facebook"></i>
         </a>
       </li>
@@ -909,7 +907,7 @@
       
       
       <li>
-        <a href="mailto:?subject=PrivLBS:%20Local%20Differential%20Privacy%20for%20Location-Based%20Services%20with%20Staircase%20Randomized%20Response&amp;body=https://youbin2014.github.io/publication/ccs2022_ldp/" target="_blank" rel="noopener" class="share-btn-email" aria-label="envelope">
+        <a href="mailto:?subject=Text-CRS:%20A%20Generalized%20Certified%20Robustness%20Framework%20against%20Textual%20Adversarial%20Attacks&amp;body=https://youbin2014.github.io/publication/textrs/" target="_blank" rel="noopener" class="share-btn-email" aria-label="envelope">
           <i class="fas fa-envelope"></i>
         </a>
       </li>
@@ -922,7 +920,7 @@
       
       
       <li>
-        <a href="https://www.linkedin.com/shareArticle?url=https://youbin2014.github.io/publication/ccs2022_ldp/&amp;title=PrivLBS:%20Local%20Differential%20Privacy%20for%20Location-Based%20Services%20with%20Staircase%20Randomized%20Response" target="_blank" rel="noopener" class="share-btn-linkedin" aria-label="linkedin-in">
+        <a href="https://www.linkedin.com/shareArticle?url=https://youbin2014.github.io/publication/textrs/&amp;title=Text-CRS:%20A%20Generalized%20Certified%20Robustness%20Framework%20against%20Textual%20Adversarial%20Attacks" target="_blank" rel="noopener" class="share-btn-linkedin" aria-label="linkedin-in">
           <i class="fab fa-linkedin-in"></i>
         </a>
       </li>
@@ -935,7 +933,7 @@
       
       
       <li>
-        <a href="whatsapp://send?text=PrivLBS:%20Local%20Differential%20Privacy%20for%20Location-Based%20Services%20with%20Staircase%20Randomized%20Response%20https://youbin2014.github.io/publication/ccs2022_ldp/" target="_blank" rel="noopener" class="share-btn-whatsapp" aria-label="whatsapp">
+        <a href="whatsapp://send?text=Text-CRS:%20A%20Generalized%20Certified%20Robustness%20Framework%20against%20Textual%20Adversarial%20Attacks%20https://youbin2014.github.io/publication/textrs/" target="_blank" rel="noopener" class="share-btn-whatsapp" aria-label="whatsapp">
           <i class="fab fa-whatsapp"></i>
         </a>
       </li>
@@ -948,7 +946,7 @@
       
       
       <li>
-        <a href="https://service.weibo.com/share/share.php?url=https://youbin2014.github.io/publication/ccs2022_ldp/&amp;title=PrivLBS:%20Local%20Differential%20Privacy%20for%20Location-Based%20Services%20with%20Staircase%20Randomized%20Response" target="_blank" rel="noopener" class="share-btn-weibo" aria-label="weibo">
+        <a href="https://service.weibo.com/share/share.php?url=https://youbin2014.github.io/publication/textrs/&amp;title=Text-CRS:%20A%20Generalized%20Certified%20Robustness%20Framework%20against%20Textual%20Adversarial%20Attacks" target="_blank" rel="noopener" class="share-btn-weibo" aria-label="weibo">
           <i class="fab fa-weibo"></i>
         </a>
       </li>
@@ -1050,6 +1048,18 @@
 
     </div>
   </div>
+
+
+  
+    
+
+
+
+
+  
+    
+
+
 
 
   
