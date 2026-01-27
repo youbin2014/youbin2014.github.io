@@ -1,3 +1,0 @@
-User-agent: *
-
-Sitemap: https://youbin2014.github.io/sitemap.xml
