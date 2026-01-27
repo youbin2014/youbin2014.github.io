@@ -1,0 +1,324 @@
+---
+const meta = {
+  title: 'Hanbin Hong',
+  description:
+    'Research Scientist at TikTok (ByteDance). Focus: vision-language model post-training, video moderation, LLM security, adversarial red-teaming, and AI safety evaluation.',
+  site: 'https://hanbinhong.com',
+};
+
+const links = {
+  email: 'hanbin.hong1@bytedance.com',
+  github: 'https://github.com/youbin2014',
+  oldSite: 'https://youbin2014.github.io/',
+  cv: '/uploads/CV.pdf',
+};
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{meta.title}</title>
+    <meta name="description" content={meta.description} />
+    <link rel="canonical" href={meta.site} />
+
+    <meta property="og:title" content={meta.title} />
+    <meta property="og:description" content={meta.description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={meta.site} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <style is:global>
+      :root {
+        --bg: #ffffff;
+        --text: #111827; /* gray-900 */
+        --muted: #4b5563; /* gray-600 */
+        --border: #e5e7eb; /* gray-200 */
+        --accent: #1d4ed8; /* blue-700 */
+      }
+
+      * { box-sizing: border-box; }
+      html, body { height: 100%; }
+      body {
+        margin: 0;
+        color: var(--text);
+        background: var(--bg);
+        font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+        line-height: 1.65;
+      }
+
+      a { color: var(--accent); text-decoration: none; }
+      a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+      .wrap {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 44px 18px 72px;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12px;
+        padding-bottom: 14px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .brand {
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+        font-weight: 700;
+        letter-spacing: 0;
+        color: var(--text);
+      }
+
+      .dot { display: none; }
+
+      .nav {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        font-size: 14px;
+        color: var(--muted);
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      }
+
+      .nav a { color: var(--muted); }
+      .nav a:hover { color: var(--text); }
+
+      header {
+        margin-top: 18px;
+        padding: 0;
+        border: none;
+        background: transparent;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(30px, 4vw, 46px);
+        letter-spacing: -0.02em;
+        line-height: 1.1;
+      }
+
+      .subtitle {
+        margin: 10px 0 0;
+        color: var(--muted);
+        font-size: 16px;
+        max-width: 68ch;
+      }
+
+      .actions {
+        margin-top: 16px;
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 10px;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        background: #fff;
+        color: var(--text);
+        font-size: 14px;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      }
+
+      .btn.primary {
+        border-color: rgba(29, 78, 216, 0.35);
+        background: rgba(29, 78, 216, 0.06);
+      }
+
+      .grid {
+        margin-top: 20px;
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 18px;
+      }
+
+      .card {
+        border: none;
+        background: transparent;
+        border-radius: 0;
+        padding: 0;
+      }
+
+      .card {
+        border-top: 1px solid var(--border);
+        padding-top: 18px;
+      }
+
+      .card h2 {
+        margin: 0 0 10px;
+        font-size: 16px;
+        letter-spacing: 0.2px;
+      }
+
+      .card p { margin: 0; color: var(--muted); }
+
+      .col-7 { grid-column: span 7; }
+      .col-5 { grid-column: span 5; }
+      .col-6 { grid-column: span 6; }
+      .col-12 { grid-column: span 12; }
+
+      ul.clean {
+        margin: 0;
+        padding-left: 18px;
+        color: var(--muted);
+      }
+      ul.clean li { margin: 8px 0; }
+
+      .kicker {
+        font-size: 13px;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+      }
+
+      .pillrow {
+        margin-top: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      }
+
+      .pill {
+        font-size: 12px;
+        color: var(--muted);
+        border: 1px solid var(--border);
+        padding: 5px 8px;
+        border-radius: 999px;
+        background: #fff;
+      }
+
+      footer {
+        margin-top: 26px;
+        padding: 16px 6px 0;
+        color: rgba(255,255,255,0.45);
+        font-size: 13px;
+      }
+
+      @media (max-width: 860px) {
+        .col-7, .col-5, .col-6 { grid-column: span 12; }
+        .topbar { position: static; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="wrap">
+      <div class="topbar">
+        <div class="brand">
+          <span class="dot" aria-hidden="true"></span>
+          <span>Hanbin Hong</span>
+        </div>
+        <nav class="nav" aria-label="Primary">
+          <a href="#about">About</a>
+          <a href="#focus">Focus</a>
+          <a href="#highlights">Highlights</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+
+      <header>
+        <div class="kicker">Research Scientist · Trust & Safety / AI Security</div>
+        <h1>Building safer, more reliable multimodal models.</h1>
+        <p class="subtitle">
+          I’m <strong>Hanbin Hong</strong>, a Research Scientist at TikTok (ByteDance) working on
+          <strong>vision-language model post-training</strong> and <strong>video moderation</strong>. Previously, I
+          worked on <strong>LLM security</strong>, adversarial red-teaming, and detection.
+        </p>
+
+        <div class="actions">
+          <a class="btn primary" href={links.cv} target="_blank" rel="noreferrer">Download CV</a>
+          <a class="btn" href={`mailto:${links.email}`}>Email</a>
+          <a class="btn" href={links.github} target="_blank" rel="noreferrer">GitHub</a>
+        </div>
+      </header>
+
+      <main class="grid">
+        <section id="about" class="card col-7">
+          <h2>About</h2>
+          <p>
+            My work sits at the intersection of <strong>AI safety</strong>, <strong>adversarial ML</strong>, and
+            <strong>trust & safety</strong> for real-world systems. I care about making training + evaluation
+            pipelines that are not only accurate, but also <em>robust, testable, and deployable</em>.
+          </p>
+          <div class="pillrow" aria-label="Interests">
+            <span class="pill">VLM post-training</span>
+            <span class="pill">Video moderation</span>
+            <span class="pill">LLM security</span>
+            <span class="pill">Red-teaming</span>
+            <span class="pill">Safety evaluation</span>
+            <span class="pill">Adversarial robustness</span>
+          </div>
+        </section>
+
+        <section class="card col-5">
+          <h2>Now</h2>
+          <ul class="clean">
+            <li><strong>TikTok (ByteDance)</strong> — Research Scientist, Data Trust & Safety (San Jose).</li>
+            <li><strong>Focus</strong> — VLM post-training & video moderation.</li>
+            <li><strong>Open</strong> — collaboration on safety evaluation / red-teaming.</li>
+          </ul>
+        </section>
+
+        <section id="focus" class="card col-6">
+          <h2>What I build</h2>
+          <ul class="clean">
+            <li>Evaluation suites for jailbreaks, policy compliance, and robustness to prompt perturbations.</li>
+            <li>Data pipelines for post-training: sampling → labeling → training → testing → iteration.</li>
+            <li>Adversarial attacks/defenses for generative and multimodal models.</li>
+          </ul>
+        </section>
+
+        <section class="card col-6">
+          <h2>Background</h2>
+          <ul class="clean">
+            <li>Ph.D. (CSE), University of Connecticut (2022–2025 expected).</li>
+            <li>Ph.D. (CS), Illinois Institute of Technology (2021–2022).</li>
+            <li>Honor Science (Physics), Xi’an Jiaotong University (2014–2018).</li>
+          </ul>
+          <p style="margin-top:10px">
+            Previous site (for reference): <a href={links.oldSite} target="_blank" rel="noreferrer">youbin2014.github.io</a>
+          </p>
+        </section>
+
+        <section id="highlights" class="card col-12">
+          <h2>Highlights (selected)</h2>
+          <p>
+            I’m rebuilding this website from scratch (no template carry-over). Next, I’ll add your
+            <strong>publications</strong>, <strong>news</strong>, and <strong>talks</strong> once you confirm your preferred
+            links (Google Scholar, LinkedIn, etc.).
+          </p>
+          <ul class="clean" style="margin-top:10px">
+            <li>End-to-end CV download is live: <a href={links.cv} target="_blank" rel="noreferrer">CV.pdf</a></li>
+            <li>Clean one-page layout optimized for fast reading + mobile.</li>
+          </ul>
+        </section>
+
+        <section id="contact" class="card col-12">
+          <h2>Contact</h2>
+          <p>
+            Best way: <a href={`mailto:${links.email}`}>{links.email}</a>.
+            If you’d like, I can add a small “social” row (Scholar / LinkedIn / X) and a publications
+            page.
+          </p>
+        </section>
+      </main>
+
+      <footer>
+        <div>© {new Date().getFullYear()} Hanbin Hong · Built with Astro · Deployed on your custom domain</div>
+      </footer>
+    </div>
+  </body>
+</html>
