@@ -8,10 +8,33 @@ const meta = {
 
 const links = {
   email: 'hanbin.hong1@bytedance.com',
+  scholar: 'https://scholar.google.com/citations?user=NW1XWCEAAAAJ&hl=zh-CN',
+  linkedin: 'https://www.linkedin.com/in/hanbinhong/',
   github: 'https://github.com/youbin2014',
   oldSite: 'https://youbin2014.github.io/',
   cv: '/uploads/CV.pdf',
 };
+
+const selectedPubs = [
+  {
+    title: 'SoK: Taxonomy and Evaluation of Prompt Security in Large Language Models',
+    venue: 'arXiv',
+    year: '2025',
+    links: [
+      { label: 'arXiv', href: 'https://arxiv.org/abs/2510.15476' },
+      { label: 'PDF', href: 'https://arxiv.org/pdf/2510.15476.pdf' },
+    ],
+  },
+  {
+    title: 'Towards Strong Certified Defense with Universal Asymmetric Randomization',
+    venue: 'arXiv',
+    year: '2025',
+    links: [
+      { label: 'arXiv', href: 'https://arxiv.org/abs/2510.19977' },
+      { label: 'PDF', href: 'https://arxiv.org/pdf/2510.19977.pdf' },
+    ],
+  },
+];
 ---
 
 <html lang="en">
@@ -224,6 +247,7 @@ const links = {
         <nav class="nav" aria-label="Primary">
           <a href="#about">About</a>
           <a href="#focus">Focus</a>
+          <a href="#publications">Publications</a>
           <a href="#highlights">Highlights</a>
           <a href="#contact">Contact</a>
         </nav>
@@ -240,8 +264,9 @@ const links = {
 
         <div class="actions">
           <a class="btn primary" href={links.cv} target="_blank" rel="noreferrer">Download CV</a>
-          <a class="btn" href={`mailto:${links.email}`}>Email</a>
+          <a class="btn" href={links.scholar} target="_blank" rel="noreferrer">Google Scholar</a>
           <a class="btn" href={links.github} target="_blank" rel="noreferrer">GitHub</a>
+          <a class="btn" href={`mailto:${links.email}`}>Email</a>
         </div>
       </header>
 
@@ -293,15 +318,45 @@ const links = {
           </p>
         </section>
 
-        <section id="highlights" class="card col-12">
-          <h2>Highlights (selected)</h2>
+        <section id="publications" class="card col-12">
+          <h2>Publications</h2>
           <p>
-            I’m rebuilding this website from scratch (no template carry-over). Next, I’ll add your
-            <strong>publications</strong>, <strong>news</strong>, and <strong>talks</strong> once you confirm your preferred
-            links (Google Scholar, LinkedIn, etc.).
+            Selected publications below. Full list on
+            <a href={links.scholar} target="_blank" rel="noreferrer">Google Scholar</a>.
           </p>
           <ul class="clean" style="margin-top:10px">
-            <li>End-to-end CV download is live: <a href={links.cv} target="_blank" rel="noreferrer">CV.pdf</a></li>
+            {selectedPubs.map((p) => (
+              <li>
+                <strong>{p.title}</strong>
+                <span style="color: var(--muted)"> — {p.venue} {p.year}</span>
+                <span style="color: var(--muted)">
+                  {' '}
+                  [
+                  {p.links.map((l, idx) => (
+                    <>
+                      <a href={l.href} target="_blank" rel="noreferrer">{l.label}</a>
+                      {idx < p.links.length - 1 ? ' · ' : ''}
+                    </>
+                  ))}
+                  ]
+                </span>
+              </li>
+            ))}
+          </ul>
+          <p style="margin-top:10px; color: var(--muted)">
+            If you want, I can expand this into a dedicated <strong>/publications</strong> page and keep the homepage
+            as a short “selected” list.
+          </p>
+        </section>
+
+        <section id="highlights" class="card col-12">
+          <h2>Highlights (selected)</h2>
+          <ul class="clean">
+            <li>
+              Google Scholar:
+              <a href={links.scholar} target="_blank" rel="noreferrer">NW1XWCEAAAAJ</a>
+            </li>
+            <li>CV download: <a href={links.cv} target="_blank" rel="noreferrer">CV.pdf</a></li>
             <li>Clean one-page layout optimized for fast reading + mobile.</li>
           </ul>
         </section>
@@ -310,8 +365,14 @@ const links = {
           <h2>Contact</h2>
           <p>
             Best way: <a href={`mailto:${links.email}`}>{links.email}</a>.
-            If you’d like, I can add a small “social” row (Scholar / LinkedIn / X) and a publications
-            page.
+          </p>
+          <p style="margin-top:10px; color: var(--muted)">
+            Also online:
+            <a href={links.scholar} target="_blank" rel="noreferrer">Google Scholar</a>
+            ·
+            <a href={links.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
+            ·
+            <a href={links.github} target="_blank" rel="noreferrer">GitHub</a>
           </p>
         </section>
       </main>
