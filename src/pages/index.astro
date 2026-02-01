@@ -412,9 +412,15 @@ const focus = [
 
       .focusGrid {
         display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 12px;
         margin-top: 12px;
+      }
+
+      .pubGrid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
       }
 
       .mini {
@@ -488,6 +494,7 @@ const focus = [
         .heroGrid { grid-template-columns: 1fr; }
         .brand { min-width: 0; }
         .focusGrid { grid-template-columns: 1fr; }
+        .pubGrid { grid-template-columns: 1fr; }
       }
 
       @media (max-width: 860px) {
@@ -610,7 +617,19 @@ const focus = [
           </ul>
         </section>
 
-        <section class="card col-5" id="focus">
+        <section class="card col-5">
+          <h2>Background</h2>
+          <ul class="clean">
+            <li><strong>Ph.D.</strong> (CSE), University of Connecticut (Sep 2022–Aug 2025).</li>
+            <li><strong>Ph.D.</strong> (CS), Illinois Institute of Technology (2021–2022).</li>
+            <li><strong>B.S.</strong> Honor Science (Physics), Xi’an Jiaotong University (2014–2018).</li>
+          </ul>
+          <p style="margin-top:10px; color: var(--muted)">
+            Research themes: prompt security, adversarial attacks/defenses, and certified robustness — now applied to large-scale multimodal moderation.
+          </p>
+        </section>
+
+        <section class="card col-6" id="focus">
           <h2>What I build</h2>
           <div class="focusGrid">
             {focus.map((f) => (
@@ -622,26 +641,13 @@ const focus = [
           </div>
         </section>
 
-        <section class="card col-6">
-          <h2>Background</h2>
-          <ul class="clean">
-            <li><strong>Ph.D.</strong> (CSE), University of Connecticut (Sep 2022–Aug 2025).</li>
-            <li><strong>Ph.D.</strong> (CS), Illinois Institute of Technology (2021–2022).</li>
-            <li><strong>B.S.</strong> Honor Science (Physics), Xi’an Jiaotong University (2014–2018).</li>
-          </ul>
-          <p style="margin-top:10px; color: var(--muted)">
-            Research themes across my Ph.D. work: prompt security, adversarial attacks/defenses, and certified robustness;
-            now applied to large-scale multimodal moderation.
-          </p>
-        </section>
-
         <section class="card col-6" id="publications">
           <h2>Selected publications</h2>
           <p>
             Full list on <a href={links.scholar} target="_blank" rel="noreferrer">Google Scholar</a>.
           </p>
           <div style="height: 10px"></div>
-          <div style="display:flex; flex-direction:column; gap: 10px;">
+          <div class="pubGrid">
             {selectedPubs.map((p) => (
               <div class="pub">
                 <div class="pubTitle">{p.title}</div>
