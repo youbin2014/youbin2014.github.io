@@ -11,7 +11,6 @@ const links = {
   scholar: 'https://scholar.google.com/citations?user=NW1XWCEAAAAJ&hl=zh-CN',
   linkedin: 'https://www.linkedin.com/in/hanbinhong/',
   github: 'https://github.com/youbin2014',
-  oldSite: 'https://youbin2014.github.io/',
   cv: '/uploads/CV.pdf',
 };
 
@@ -35,6 +34,30 @@ const selectedPubs = [
     ],
   },
 ];
+
+const pills = [
+  'Trust & Safety',
+  'AI Security',
+  'VLM post-training',
+  'Video moderation',
+  'Red-teaming',
+  'Safety evaluation',
+];
+
+const focus = [
+  {
+    title: 'Evaluation',
+    desc: 'Jailbreaks, policy compliance, robustness, and multimodal safety evals — with metrics that survive production.',
+  },
+  {
+    title: 'Post-training pipelines',
+    desc: 'Sampling → labeling → training → testing → iteration, with strong dataset governance and failure analysis.',
+  },
+  {
+    title: 'Adversarial ML',
+    desc: 'Attacks & defenses for generative and multimodal models; red-team methodology and tooling.',
+  },
+];
 ---
 
 <html lang="en">
@@ -52,15 +75,34 @@ const selectedPubs = [
     <meta property="og:type" content="website" />
     <meta property="og:url" content={meta.site} />
 
+    <meta name="twitter:card" content="summary_large_image" />
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap"
+      rel="stylesheet"
+    />
 
     <style is:global>
       :root {
-        --bg: #ffffff;
-        --text: #111827; /* gray-900 */
-        --muted: #4b5563; /* gray-600 */
-        --border: #e5e7eb; /* gray-200 */
-        --accent: #1d4ed8; /* blue-700 */
+        --bg0: #070a12;
+        --bg1: #0b1020;
+        --card: rgba(255, 255, 255, 0.06);
+        --card2: rgba(255, 255, 255, 0.08);
+        --border: rgba(255, 255, 255, 0.12);
+        --text: rgba(255, 255, 255, 0.92);
+        --muted: rgba(255, 255, 255, 0.68);
+        --muted2: rgba(255, 255, 255, 0.55);
+        --shadow: 0 18px 70px rgba(0, 0, 0, 0.42);
+        --accent: #a7c5ff;
+        --accent2: #7c3aed;
+        --ring: rgba(167, 197, 255, 0.35);
+
+        --sans: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+        --serif: "Source Serif 4", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
       }
 
       * { box-sizing: border-box; }
@@ -68,71 +110,157 @@ const selectedPubs = [
       body {
         margin: 0;
         color: var(--text);
-        background: var(--bg);
-        font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-        line-height: 1.65;
+        font-family: var(--sans);
+        line-height: 1.6;
+        background: radial-gradient(1200px 700px at 18% -5%, rgba(124, 58, 237, 0.22), transparent 55%),
+          radial-gradient(1100px 700px at 86% 10%, rgba(167, 197, 255, 0.20), transparent 55%),
+          radial-gradient(900px 600px at 50% 90%, rgba(14, 165, 233, 0.12), transparent 50%),
+          linear-gradient(180deg, var(--bg0), var(--bg1));
+        overflow-x: hidden;
+      }
+
+      /* subtle grain */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.09;
+        background-image:
+          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+        mix-blend-mode: overlay;
       }
 
       a { color: var(--accent); text-decoration: none; }
-      a:hover { text-decoration: underline; text-underline-offset: 3px; }
+      a:hover { text-decoration: underline; text-underline-offset: 4px; }
 
       .wrap {
-        max-width: 860px;
+        max-width: 1040px;
         margin: 0 auto;
-        padding: 44px 18px 72px;
+        padding: 26px 18px 84px;
       }
 
-      .topbar {
+      .nav {
+        position: sticky;
+        top: 12px;
+        z-index: 10;
         display: flex;
-        align-items: baseline;
+        align-items: center;
         justify-content: space-between;
-        gap: 12px;
-        padding-bottom: 14px;
-        border-bottom: 1px solid var(--border);
+        gap: 14px;
+        padding: 12px 14px;
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        background: rgba(10, 14, 28, 0.55);
+        backdrop-filter: blur(14px);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.28);
       }
 
       .brand {
         display: flex;
-        align-items: baseline;
+        align-items: center;
         gap: 10px;
-        font-weight: 700;
-        letter-spacing: 0;
-        color: var(--text);
+        min-width: 180px;
       }
 
-      .dot { display: none; }
+      .mark {
+        width: 28px;
+        height: 28px;
+        border-radius: 9px;
+        background:
+          radial-gradient(18px 18px at 30% 30%, rgba(167,197,255,.95), transparent 60%),
+          radial-gradient(20px 20px at 70% 70%, rgba(124,58,237,.9), transparent 60%),
+          rgba(255,255,255,.06);
+        border: 1px solid rgba(255,255,255,.14);
+        box-shadow: 0 10px 30px rgba(0,0,0,.35);
+      }
 
-      .nav {
+      .brand strong { font-weight: 700; letter-spacing: -0.02em; }
+      .brand small { display: block; font-size: 12px; color: var(--muted2); margin-top: 1px; }
+
+      .navlinks {
         display: flex;
         gap: 12px;
         flex-wrap: wrap;
-        font-size: 14px;
+        justify-content: flex-end;
+        font-size: 13px;
         color: var(--muted);
-        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       }
 
-      .nav a { color: var(--muted); }
-      .nav a:hover { color: var(--text); }
+      .navlinks a {
+        color: var(--muted);
+        padding: 6px 8px;
+        border-radius: 10px;
+        border: 1px solid transparent;
+      }
+      .navlinks a:hover {
+        color: var(--text);
+        text-decoration: none;
+        border-color: rgba(255,255,255,.14);
+        background: rgba(255,255,255,.04);
+      }
 
-      header {
+      .hero {
         margin-top: 18px;
-        padding: 0;
-        border: none;
-        background: transparent;
+        padding: 26px;
+        border-radius: 20px;
+        border: 1px solid var(--border);
+        background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.045));
+        box-shadow: var(--shadow);
+        overflow: hidden;
+        position: relative;
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: -2px;
+        background:
+          radial-gradient(400px 200px at 10% 0%, rgba(167,197,255,.18), transparent 60%),
+          radial-gradient(420px 260px at 90% 10%, rgba(124,58,237,.16), transparent 60%);
+        pointer-events: none;
+      }
+
+      .heroGrid {
+        display: grid;
+        grid-template-columns: 1.35fr 0.65fr;
+        gap: 18px;
+        position: relative;
+        z-index: 1;
       }
 
       h1 {
         margin: 0;
-        font-size: clamp(30px, 4vw, 46px);
-        letter-spacing: -0.02em;
-        line-height: 1.1;
+        font-family: var(--serif);
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        font-size: clamp(34px, 4.3vw, 54px);
+        line-height: 1.08;
+      }
+
+      .kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 12px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .kdot {
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        background: rgba(167,197,255,.9);
+        box-shadow: 0 0 0 5px rgba(167,197,255,.12);
       }
 
       .subtitle {
-        margin: 10px 0 0;
+        margin: 12px 0 0;
+        max-width: 70ch;
         color: var(--muted);
         font-size: 16px;
-        max-width: 68ch;
       }
 
       .actions {
@@ -145,44 +273,95 @@ const selectedPubs = [
       .btn {
         display: inline-flex;
         align-items: center;
-        gap: 8px;
-        padding: 8px 10px;
-        border-radius: 10px;
-        border: 1px solid var(--border);
-        background: #fff;
+        gap: 10px;
+        padding: 10px 12px;
+        border-radius: 12px;
+        border: 1px solid rgba(255,255,255,.14);
+        background: rgba(255,255,255,.04);
         color: var(--text);
         font-size: 14px;
-        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+        font-weight: 600;
+        box-shadow: 0 10px 30px rgba(0,0,0,.18);
+      }
+      .btn:hover {
+        text-decoration: none;
+        border-color: rgba(255,255,255,.22);
+        background: rgba(255,255,255,.06);
       }
 
       .btn.primary {
-        border-color: rgba(29, 78, 216, 0.35);
-        background: rgba(29, 78, 216, 0.06);
+        background: linear-gradient(135deg, rgba(167,197,255,.22), rgba(124,58,237,.18));
+        border-color: rgba(167,197,255,.28);
+        box-shadow: 0 18px 50px rgba(124,58,237,.15);
+      }
+
+      .icon {
+        width: 18px;
+        height: 18px;
+        opacity: 0.9;
+      }
+
+      .side {
+        padding: 14px;
+        border-radius: 16px;
+        border: 1px solid rgba(255,255,255,.12);
+        background: rgba(255,255,255,.035);
+      }
+
+      .side h3 {
+        margin: 0 0 8px;
+        font-size: 13px;
+        color: rgba(255,255,255,.80);
+        letter-spacing: 0.02em;
+      }
+
+      .metaList {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .metaList li { margin: 10px 0; }
+      .metaList strong { color: rgba(255,255,255,.88); font-weight: 600; }
+
+      .pills {
+        margin-top: 14px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .pill {
+        font-size: 12px;
+        color: rgba(255,255,255,.78);
+        border: 1px solid rgba(255,255,255,.12);
+        background: rgba(255,255,255,.03);
+        padding: 6px 10px;
+        border-radius: 999px;
       }
 
       .grid {
-        margin-top: 20px;
+        margin-top: 18px;
         display: grid;
         grid-template-columns: repeat(12, 1fr);
-        gap: 18px;
+        gap: 14px;
       }
 
       .card {
-        border: none;
-        background: transparent;
-        border-radius: 0;
-        padding: 0;
-      }
-
-      .card {
-        border-top: 1px solid var(--border);
-        padding-top: 18px;
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        padding: 18px;
+        background: rgba(255,255,255,.04);
+        box-shadow: 0 14px 40px rgba(0,0,0,.22);
       }
 
       .card h2 {
         margin: 0 0 10px;
-        font-size: 16px;
-        letter-spacing: 0.2px;
+        font-size: 14px;
+        color: rgba(255,255,255,.86);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
       }
 
       .card p { margin: 0; color: var(--muted); }
@@ -192,81 +371,180 @@ const selectedPubs = [
       .col-6 { grid-column: span 6; }
       .col-12 { grid-column: span 12; }
 
+      .focusGrid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 12px;
+      }
+
+      .mini {
+        border-radius: 16px;
+        border: 1px solid rgba(255,255,255,.12);
+        background: rgba(255,255,255,.03);
+        padding: 14px;
+      }
+
+      .mini strong {
+        display: block;
+        color: rgba(255,255,255,.9);
+        font-weight: 700;
+        letter-spacing: -0.01em;
+      }
+
+      .mini p { margin: 8px 0 0; color: var(--muted); font-size: 14px; }
+
       ul.clean {
-        margin: 0;
-        padding-left: 18px;
+        margin: 10px 0 0;
+        padding-left: 16px;
         color: var(--muted);
       }
       ul.clean li { margin: 8px 0; }
 
-      .kicker {
-        font-size: 13px;
-        color: var(--muted);
-        text-transform: uppercase;
-        letter-spacing: 0.14em;
-      }
-
-      .pillrow {
-        margin-top: 10px;
+      .pub {
         display: flex;
-        flex-wrap: wrap;
+        flex-direction: column;
         gap: 8px;
-        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+        padding: 12px 12px;
+        border-radius: 14px;
+        border: 1px solid rgba(255,255,255,.12);
+        background: rgba(255,255,255,.03);
       }
 
-      .pill {
-        font-size: 12px;
-        color: var(--muted);
-        border: 1px solid var(--border);
-        padding: 5px 8px;
-        border-radius: 999px;
-        background: #fff;
-      }
+      .pubTitle { font-weight: 700; color: rgba(255,255,255,.92); }
+      .pubMeta { color: var(--muted2); font-size: 13px; }
 
-      footer {
-        margin-top: 26px;
-        padding: 16px 6px 0;
-        color: rgba(255,255,255,0.45);
+      .pubLinks {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
         font-size: 13px;
+        color: var(--muted);
+      }
+
+      .pubLinks a {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 8px;
+        border-radius: 10px;
+        border: 1px solid rgba(255,255,255,.12);
+        background: rgba(255,255,255,.02);
+        color: rgba(255,255,255,.82);
+        text-decoration: none;
+      }
+      .pubLinks a:hover {
+        border-color: rgba(255,255,255,.20);
+        background: rgba(255,255,255,.04);
+      }
+
+      .footer {
+        margin-top: 22px;
+        text-align: center;
+        color: var(--muted2);
+        font-size: 13px;
+      }
+
+      @media (max-width: 980px) {
+        .heroGrid { grid-template-columns: 1fr; }
+        .brand { min-width: 0; }
+        .focusGrid { grid-template-columns: 1fr; }
       }
 
       @media (max-width: 860px) {
-        .col-7, .col-5, .col-6 { grid-column: span 12; }
-        .topbar { position: static; }
+        .col-7, .col-6, .col-5 { grid-column: span 12; }
       }
+
+      @media (prefers-reduced-motion: reduce) {
+        * { scroll-behavior: auto !important; }
+      }
+
+      html { scroll-behavior: smooth; }
     </style>
   </head>
 
   <body>
     <div class="wrap">
-      <div class="topbar">
+      <nav class="nav" aria-label="Primary">
         <div class="brand">
-          <span class="dot" aria-hidden="true"></span>
-          <span>Hanbin Hong</span>
+          <span class="mark" aria-hidden="true"></span>
+          <div>
+            <strong>Hanbin Hong</strong>
+            <small>Research Scientist · Trust & Safety / AI Security</small>
+          </div>
         </div>
-        <nav class="nav" aria-label="Primary">
+
+        <div class="navlinks">
           <a href="#about">About</a>
           <a href="#focus">Focus</a>
           <a href="#publications">Publications</a>
-          <a href="#highlights">Highlights</a>
           <a href="#contact">Contact</a>
-        </nav>
-      </div>
+        </div>
+      </nav>
 
-      <header>
-        <div class="kicker">Research Scientist · Trust & Safety / AI Security</div>
-        <h1>Building safer, more reliable multimodal models.</h1>
-        <p class="subtitle">
-          I’m <strong>Hanbin Hong</strong>, a Research Scientist at TikTok (ByteDance) working on
-          <strong>vision-language model post-training</strong> and <strong>video moderation</strong>. Previously, I
-          worked on <strong>LLM security</strong>, adversarial red-teaming, and detection.
-        </p>
+      <header class="hero">
+        <div class="heroGrid">
+          <div>
+            <div class="kicker"><span class="kdot" aria-hidden="true"></span>Building safer, more reliable multimodal models</div>
+            <h1>Multimodal safety, evals, and post-training for real-world systems.</h1>
+            <p class="subtitle">
+              I’m <strong>Hanbin Hong</strong>, a Research Scientist at TikTok (ByteDance) working on
+              <strong>vision-language model post-training</strong> and <strong>video moderation</strong>. I’m interested in
+              <strong>LLM/VLM security</strong>, adversarial red-teaming, and safety evaluation.
+            </p>
 
-        <div class="actions">
-          <a class="btn primary" href={links.cv} target="_blank" rel="noreferrer">Download CV</a>
-          <a class="btn" href={links.scholar} target="_blank" rel="noreferrer">Google Scholar</a>
-          <a class="btn" href={links.github} target="_blank" rel="noreferrer">GitHub</a>
-          <a class="btn" href={`mailto:${links.email}`}>Email</a>
+            <div class="actions">
+              <a class="btn primary" href={links.cv} target="_blank" rel="noreferrer">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M12 3v10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                  <path d="M8.5 10.5 12 13.9l3.5-3.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M6 17.5h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                </svg>
+                Download CV
+              </a>
+              <a class="btn" href={links.scholar} target="_blank" rel="noreferrer">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M4 8.5 12 4l8 4.5-8 4.5L4 8.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                  <path d="M6.5 10.4v5.2c0 .7.4 1.4 1 1.7 1.3.7 3 1.2 4.5 1.2s3.2-.5 4.5-1.2c.6-.3 1-.9 1-1.7v-5.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+                Scholar
+              </a>
+              <a class="btn" href={links.github} target="_blank" rel="noreferrer">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M9 19c-4 1.5-4-2.5-5-3m10 5v-3.1c0-.9.3-1.6.8-2.1-2.7-.3-5.6-1.3-5.6-6a4.7 4.7 0 0 1 1.2-3.2 4.3 4.3 0 0 1 .1-3.1s1-.3 3.3 1.2a11.4 11.4 0 0 1 6 0C20.4 4.3 21.4 4.6 21.4 4.6a4.3 4.3 0 0 1 .1 3.1 4.7 4.7 0 0 1 1.2 3.2c0 4.7-2.9 5.7-5.6 6 .5.5.9 1.3.9 2.6V21" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                GitHub
+              </a>
+              <a class="btn" href={`mailto:${links.email}`}>
+                <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M4.5 7.5h15v9h-15v-9Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                  <path d="M4.5 8l7.5 6 7.5-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Email
+              </a>
+            </div>
+
+            <div class="pills" aria-label="Topics">
+              {pills.map((p) => <span class="pill">{p}</span>)}
+            </div>
+          </div>
+
+          <aside class="side">
+            <h3>Now</h3>
+            <ul class="metaList">
+              <li><strong>TikTok (ByteDance)</strong> — Research Scientist (San Jose)</li>
+              <li><strong>Focus</strong> — VLM post-training & video moderation</li>
+              <li><strong>Open</strong> — collaboration on safety eval / red-teaming</li>
+            </ul>
+
+            <div style="height: 12px"></div>
+            <h3>Quick links</h3>
+            <ul class="metaList">
+              <li><a href={links.linkedin} target="_blank" rel="noreferrer">LinkedIn</a></li>
+              <li><a href={links.scholar} target="_blank" rel="noreferrer">Google Scholar</a></li>
+              <li><a href={links.cv} target="_blank" rel="noreferrer">CV.pdf</a></li>
+            </ul>
+          </aside>
         </div>
       </header>
 
@@ -274,36 +552,22 @@ const selectedPubs = [
         <section id="about" class="card col-7">
           <h2>About</h2>
           <p>
-            My work sits at the intersection of <strong>AI safety</strong>, <strong>adversarial ML</strong>, and
-            <strong>trust & safety</strong> for real-world systems. I care about making training + evaluation
-            pipelines that are not only accurate, but also <em>robust, testable, and deployable</em>.
+            I work at the intersection of <strong>AI safety</strong>, <strong>adversarial ML</strong>, and
+            <strong>trust & safety</strong> — building training and evaluation pipelines that are
+            <em>robust, testable, and deployable</em>.
           </p>
-          <div class="pillrow" aria-label="Interests">
-            <span class="pill">VLM post-training</span>
-            <span class="pill">Video moderation</span>
-            <span class="pill">LLM security</span>
-            <span class="pill">Red-teaming</span>
-            <span class="pill">Safety evaluation</span>
-            <span class="pill">Adversarial robustness</span>
-          </div>
         </section>
 
-        <section class="card col-5">
-          <h2>Now</h2>
-          <ul class="clean">
-            <li><strong>TikTok (ByteDance)</strong> — Research Scientist, Data Trust & Safety (San Jose).</li>
-            <li><strong>Focus</strong> — VLM post-training & video moderation.</li>
-            <li><strong>Open</strong> — collaboration on safety evaluation / red-teaming.</li>
-          </ul>
-        </section>
-
-        <section id="focus" class="card col-6">
+        <section class="card col-5" id="focus">
           <h2>What I build</h2>
-          <ul class="clean">
-            <li>Evaluation suites for jailbreaks, policy compliance, and robustness to prompt perturbations.</li>
-            <li>Data pipelines for post-training: sampling → labeling → training → testing → iteration.</li>
-            <li>Adversarial attacks/defenses for generative and multimodal models.</li>
-          </ul>
+          <div class="focusGrid">
+            {focus.map((f) => (
+              <div class="mini">
+                <strong>{f.title}</strong>
+                <p>{f.desc}</p>
+              </div>
+            ))}
+          </div>
         </section>
 
         <section class="card col-6">
@@ -313,73 +577,49 @@ const selectedPubs = [
             <li>Ph.D. (CS), Illinois Institute of Technology (2021–2022).</li>
             <li>Honor Science (Physics), Xi’an Jiaotong University (2014–2018).</li>
           </ul>
-          <p style="margin-top:10px">
-            Previous site (for reference): <a href={links.oldSite} target="_blank" rel="noreferrer">youbin2014.github.io</a>
-          </p>
         </section>
 
-        <section id="publications" class="card col-12">
-          <h2>Publications</h2>
+        <section class="card col-6" id="publications">
+          <h2>Selected publications</h2>
           <p>
-            Selected publications below. Full list on
-            <a href={links.scholar} target="_blank" rel="noreferrer">Google Scholar</a>.
+            Full list on <a href={links.scholar} target="_blank" rel="noreferrer">Google Scholar</a>.
           </p>
-          <ul class="clean" style="margin-top:10px">
+          <div style="height: 10px"></div>
+          <div style="display:flex; flex-direction:column; gap: 10px;">
             {selectedPubs.map((p) => (
-              <li>
-                <strong>{p.title}</strong>
-                <span style="color: var(--muted)"> — {p.venue} {p.year}</span>
-                <span style="color: var(--muted)">
-                  {' '}
-                  [
-                  {p.links.map((l, idx) => (
-                    <>
-                      <a href={l.href} target="_blank" rel="noreferrer">{l.label}</a>
-                      {idx < p.links.length - 1 ? ' · ' : ''}
-                    </>
+              <div class="pub">
+                <div class="pubTitle">{p.title}</div>
+                <div class="pubMeta">{p.venue} · {p.year}</div>
+                <div class="pubLinks">
+                  {p.links.map((l) => (
+                    <a href={l.href} target="_blank" rel="noreferrer">
+                      {l.label}
+                      <span aria-hidden="true">↗</span>
+                    </a>
                   ))}
-                  ]
-                </span>
-              </li>
+                </div>
+              </div>
             ))}
-          </ul>
-          <p style="margin-top:10px; color: var(--muted)">
-            If you want, I can expand this into a dedicated <strong>/publications</strong> page and keep the homepage
-            as a short “selected” list.
-          </p>
+          </div>
         </section>
 
-        <section id="highlights" class="card col-12">
-          <h2>Highlights (selected)</h2>
-          <ul class="clean">
-            <li>
-              Google Scholar:
-              <a href={links.scholar} target="_blank" rel="noreferrer">NW1XWCEAAAAJ</a>
-            </li>
-            <li>CV download: <a href={links.cv} target="_blank" rel="noreferrer">CV.pdf</a></li>
-            <li>Clean one-page layout optimized for fast reading + mobile.</li>
-          </ul>
-        </section>
-
-        <section id="contact" class="card col-12">
+        <section class="card col-12" id="contact">
           <h2>Contact</h2>
           <p>
-            Best way: <a href={`mailto:${links.email}`}>{links.email}</a>.
-          </p>
-          <p style="margin-top:10px; color: var(--muted)">
-            Also online:
-            <a href={links.scholar} target="_blank" rel="noreferrer">Google Scholar</a>
-            ·
+            Email: <a href={`mailto:${links.email}`}>{links.email}</a>
+            <span style="color: var(--muted2)"> · </span>
             <a href={links.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
-            ·
+            <span style="color: var(--muted2)"> · </span>
             <a href={links.github} target="_blank" rel="noreferrer">GitHub</a>
+            <span style="color: var(--muted2)"> · </span>
+            <a href={links.scholar} target="_blank" rel="noreferrer">Scholar</a>
           </p>
         </section>
       </main>
 
-      <footer>
-        <div>© {new Date().getFullYear()} Hanbin Hong · Built with Astro · Deployed on your custom domain</div>
-      </footer>
+      <div class="footer">
+        © {new Date().getFullYear()} Hanbin Hong · Built with Astro · Deployed on GitHub Pages
+      </div>
     </div>
   </body>
 </html>
