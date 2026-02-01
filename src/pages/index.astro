@@ -192,6 +192,16 @@ const focus = [
         min-width: 180px;
       }
 
+      .avatar {
+        width: 34px;
+        height: 34px;
+        border-radius: 999px;
+        border: 1px solid rgba(255,255,255,.16);
+        box-shadow: 0 10px 30px rgba(0,0,0,.35);
+        object-fit: cover;
+        background: rgba(255,255,255,.06);
+      }
+
       .mark {
         width: 28px;
         height: 28px;
@@ -496,7 +506,7 @@ const focus = [
     <div class="wrap">
       <nav class="nav" aria-label="Primary">
         <div class="brand">
-          <span class="mark" aria-hidden="true"></span>
+          <img class="avatar" src="/assets/avatar.png" alt="Hanbin Hong" width="34" height="34" loading="eager" />
           <div>
             <strong>Hanbin Hong</strong>
             <small>Research Scientist · Trust & Safety / AI Security</small>
