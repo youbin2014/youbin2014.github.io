@@ -202,18 +202,6 @@ const focus = [
         background: rgba(255,255,255,.06);
       }
 
-      .mark {
-        width: 28px;
-        height: 28px;
-        border-radius: 9px;
-        background:
-          radial-gradient(18px 18px at 30% 30%, rgba(167,197,255,.95), transparent 60%),
-          radial-gradient(20px 20px at 70% 70%, rgba(124,58,237,.9), transparent 60%),
-          rgba(255,255,255,.06);
-        border: 1px solid rgba(255,255,255,.14);
-        box-shadow: 0 10px 30px rgba(0,0,0,.35);
-      }
-
       .brand strong { font-weight: 700; letter-spacing: -0.02em; }
       .brand small { display: block; font-size: 12px; color: var(--muted2); margin-top: 1px; }
 
@@ -412,15 +400,9 @@ const focus = [
 
       .focusGrid {
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: 1fr;
         gap: 12px;
         margin-top: 12px;
-      }
-
-      .pubGrid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 10px;
       }
 
       .mini {
@@ -481,6 +463,12 @@ const focus = [
       .pubLinks a:hover {
         border-color: rgba(255,255,255,.20);
         background: rgba(255,255,255,.04);
+      }
+
+      .pubGrid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
       }
 
       .footer {
