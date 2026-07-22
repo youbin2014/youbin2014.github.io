@@ -1,99 +1,190 @@
 ---
 const meta = {
-  title: 'Hanbin Hong',
+  title: 'Hanbin Hong — AI Safety & Prompt Security Researcher',
   description:
-    'Research Scientist at TikTok (ByteDance). Trust & Safety for multimodal models: data, training, evaluation, and adversarial robustness—at research and production scale.',
+    'Research Scientist working on LLM/VLM safety, prompt security, video moderation, and adversarial robustness. Explore PromptSecurity, datasets, leaderboard, and publications.',
   site: 'https://hanbinhong.com',
+  image: 'https://hanbinhong.com/assets/avatar.png',
 };
 
 const links = {
-  email: 'hanbin.hong1@bytedance.com',
-  scholar: 'https://scholar.google.com/citations?user=NW1XWCEAAAAJ&hl=zh-CN',
+  email: 'youbinhhh@gmail.com',
+  scholar: 'https://scholar.google.com/citations?user=NW1XWCEAAAAJ&hl=en',
   linkedin: 'https://www.linkedin.com/in/hanbinhong/',
   github: 'https://github.com/youbin2014',
   cv: '/uploads/CV.pdf',
+  paper: 'https://arxiv.org/abs/2510.15476',
+  pdf: 'https://arxiv.org/pdf/2510.15476',
+  promptSecurity: 'https://github.com/datasec-lab/PromptSecurity',
+  leaderboard: 'https://datasec-lab.github.io/PromptSecurityLeaderboard/',
+  jailbreakDb: 'https://huggingface.co/datasets/youbin2014/JailbreakDB',
+  evalDataset: 'https://huggingface.co/datasets/youbin2014/PromptSecurity-Eval',
 };
+
+const releaseResources = [
+  {
+    index: '01',
+    label: 'Paper',
+    title: 'Read the full SoK',
+    detail: 'Taxonomies, protocol, experiments, and findings.',
+    href: links.paper,
+    cta: 'Open on arXiv',
+  },
+  {
+    index: '02',
+    label: 'Leaderboard',
+    title: 'Compare results',
+    detail: 'Browse compatible main-protocol measurements.',
+    href: links.leaderboard,
+    cta: 'Explore results',
+  },
+  {
+    index: '03',
+    label: 'Datasets',
+    title: 'Use the released data',
+    detail: 'JailbreakDB and PromptSecurity-Eval on Hugging Face.',
+    href: links.jailbreakDb,
+    cta: 'View datasets',
+  },
+  {
+    index: '04',
+    label: 'Open source',
+    title: 'Run PromptSecurity',
+    detail: 'Compose models, attacks, defenses, data, and judgers.',
+    href: links.promptSecurity,
+    cta: 'View on GitHub',
+  },
+];
+
+const releaseStats = [
+  { value: '445,752', label: 'jailbreak prompt pairs', note: 'from 48 sources' },
+  { value: '1.09M', label: 'benign prompts', note: 'from 14 sources' },
+  { value: '175,400', label: 'evaluation records', note: 'harmful + benign utility' },
+  { value: '11 × 21 × 10', label: 'models · attacks · defenses', note: 'with 3 judgers' },
+];
+
+const findings = [
+  {
+    number: '41.8%',
+    eyebrow: 'Worst-case exposure',
+    title: 'Averages can hide concentrated risk.',
+    description:
+      'GPT-5.2 showed 4.7% average induced harmfulness, while its worst-case ASR under GPTFUZZER reached 41.8%.',
+  },
+  {
+    number: '−60.6 pp',
+    eyebrow: 'Safety–utility tradeoff',
+    title: 'Mitigation strength is not the whole story.',
+    description:
+      'Output filtering reduced defended ASR to 2.7%, but benign-task accuracy fell by 60.6 percentage points.',
+  },
+  {
+    number: '71–87 pp',
+    eyebrow: 'Measurement sensitivity',
+    title: 'The judger can change the conclusion.',
+    description:
+      'For identical model outputs, changing only the HarmBench behavior input shifted measured ASR by 71–87 points.',
+  },
+];
+
+const researchAreas = [
+  {
+    index: 'A',
+    title: 'Prompt security & evaluation',
+    description:
+      'Taxonomy-grounded red teaming, auditable attack–defense evaluation, automated judgers, and cost-aware benchmarking.',
+    tags: ['Jailbreaks', 'Red teaming', 'Safety evals'],
+  },
+  {
+    index: 'B',
+    title: 'Multimodal Trust & Safety',
+    description:
+      'LLM/VLM-powered video moderation, large-scale labeling pipelines, model training, and reliable policy enforcement.',
+    tags: ['Video moderation', 'VLMs', 'Post-training'],
+  },
+  {
+    index: 'C',
+    title: 'Adversarial robustness',
+    description:
+      'Attacks, defenses, randomized smoothing, and provable guarantees for safety-critical machine learning systems.',
+    tags: ['Certified ML', 'Model security', 'Verification'],
+  },
+];
 
 const selectedPubs = [
   {
-    title: 'SoK: Taxonomy and Evaluation of Prompt Security in Large Language Models',
-    venue: 'arXiv',
-    year: '2025',
+    title: 'SoK: Systematizing LLM Prompt Security: Taxonomies, Datasets, and Unified Evaluation of Attacks and Defenses',
+    venue: 'arXiv:2510.15476 · revised July 2026',
+    featured: true,
     links: [
-      { label: 'arXiv', href: 'https://arxiv.org/abs/2510.15476' },
-      { label: 'PDF', href: 'https://arxiv.org/pdf/2510.15476.pdf' },
+      { label: 'Paper', href: links.paper },
+      { label: 'Leaderboard', href: links.leaderboard },
+      { label: 'Data', href: links.jailbreakDb },
+      { label: 'Code', href: links.promptSecurity },
     ],
   },
   {
     title: 'Towards Strong Certified Defense with Universal Asymmetric Randomization',
-    venue: 'IEEE CSF',
-    year: '2026',
+    venue: 'IEEE CSF · 2026',
     links: [
       { label: 'arXiv', href: 'https://arxiv.org/abs/2510.19977' },
-      { label: 'PDF', href: 'https://arxiv.org/pdf/2510.19977.pdf' },
       { label: 'Code', href: 'https://github.com/youbin2014/UCAN/' },
     ],
   },
   {
     title: 'Certifiable Black-Box Attacks with Randomized Adversarial Examples: Breaking Defenses with Provable Confidence',
-    venue: 'ACM CCS',
-    year: '2024',
+    venue: 'ACM CCS · 2024',
     links: [
       { label: 'arXiv', href: 'https://arxiv.org/abs/2304.04343' },
-      { label: 'PDF', href: 'https://arxiv.org/pdf/2304.04343.pdf' },
       { label: 'Code', href: 'https://github.com/datasec-lab/CertifiedAttack' },
     ],
   },
   {
     title: 'Text-CRS: A Generalized Certified Robustness Framework against Textual Adversarial Attacks',
-    venue: 'IEEE S&P',
-    year: '2024',
-    links: [
-      { label: 'arXiv', href: 'https://arxiv.org/abs/2307.16630' },
-      { label: 'PDF', href: 'https://arxiv.org/pdf/2307.16630.pdf' },
-    ],
+    venue: 'IEEE S&P · 2024',
+    links: [{ label: 'arXiv', href: 'https://arxiv.org/abs/2307.16630' }],
   },
   {
     title: 'UniCR: Universally Approximated Certified Robustness via Randomized Smoothing',
-    venue: 'ECCV',
-    year: '2022',
-    links: [
-      { label: 'arXiv', href: 'https://arxiv.org/abs/2207.02152' },
-      { label: 'PDF', href: 'https://arxiv.org/pdf/2207.02152.pdf' },
-    ],
+    venue: 'ECCV · 2022',
+    links: [{ label: 'arXiv', href: 'https://arxiv.org/abs/2207.02152' }],
   },
 ];
 
-const pills = [
-  'Trust & Safety',
-  'Video moderation',
-  'Data & labeling',
-  'Mid-/post-training',
-  'Safety evaluation',
-  'Adversarial robustness',
-];
-
-const focus = [
-  {
-    title: 'Video moderation at scale',
-    desc: 'LLM/VLM-assisted review pipelines for real-world policy enforcement and reliability.',
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Hanbin Hong',
+  url: meta.site,
+  image: meta.image,
+  jobTitle: 'Research Scientist',
+  worksFor: {
+    '@type': 'Organization',
+    name: 'TikTok (ByteDance)',
   },
-  {
-    title: 'Data & post-training',
-    desc: 'Automated labeling, large-scale dataset construction, and mid-/post-training for production models.',
+  email: `mailto:${links.email}`,
+  alumniOf: {
+    '@type': 'CollegeOrUniversity',
+    name: 'University of Connecticut',
   },
-  {
-    title: 'Security & evaluation',
-    desc: 'Prompt security, adversarial ML, and certified robustness—turning research into deployable evals and guardrails.',
-  },
-];
+  sameAs: [links.linkedin, links.github, links.scholar],
+  knowsAbout: [
+    'AI Safety',
+    'Prompt Security',
+    'Multimodal Models',
+    'Adversarial Machine Learning',
+    'Certified Robustness',
+  ],
+};
 ---
 
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#071013" />
 
     <title>{meta.title}</title>
     <meta name="description" content={meta.description} />
@@ -103,571 +194,1124 @@ const focus = [
     <meta property="og:description" content={meta.description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={meta.site} />
+    <meta property="og:image" content={meta.image} />
+    <meta property="og:image:alt" content="Portrait of Hanbin Hong" />
 
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={meta.title} />
+    <meta name="twitter:description" content={meta.description} />
+    <meta name="twitter:image" content={meta.image} />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap"
       rel="stylesheet"
     />
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
 
     <style is:global>
       :root {
-        --bg0: #070a12;
-        --bg1: #0b1020;
-        --card: rgba(255, 255, 255, 0.06);
-        --card2: rgba(255, 255, 255, 0.08);
-        --border: rgba(255, 255, 255, 0.12);
-        --text: rgba(255, 255, 255, 0.92);
-        --muted: rgba(255, 255, 255, 0.68);
-        --muted2: rgba(255, 255, 255, 0.55);
-        --shadow: 0 18px 70px rgba(0, 0, 0, 0.42);
-        --accent: #a7c5ff;
-        --accent2: #7c3aed;
-        --ring: rgba(167, 197, 255, 0.35);
-
-        --sans: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-        --serif: "Source Serif 4", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+        --bg: #071013;
+        --surface: #0d181c;
+        --surface-raised: #122126;
+        --surface-soft: rgba(255, 255, 255, 0.035);
+        --line: rgba(226, 242, 239, 0.13);
+        --line-strong: rgba(226, 242, 239, 0.22);
+        --text: #edf7f4;
+        --muted: #a5b7b5;
+        --muted-strong: #c7d4d2;
+        --accent: #78efc2;
+        --accent-strong: #33d8a1;
+        --blue: #92b9ff;
+        --warm: #f2cd8f;
+        --shadow: 0 30px 90px rgba(0, 0, 0, 0.34);
+        --sans: 'DM Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        --serif: 'Source Serif 4', ui-serif, Georgia, Cambria, 'Times New Roman', serif;
       }
 
       * { box-sizing: border-box; }
-      html, body { height: 100%; }
+
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 104px;
+      }
+
       body {
         margin: 0;
         color: var(--text);
+        background:
+          radial-gradient(circle at 12% 2%, rgba(52, 216, 161, 0.12), transparent 28rem),
+          radial-gradient(circle at 88% 16%, rgba(93, 139, 235, 0.13), transparent 30rem),
+          var(--bg);
         font-family: var(--sans);
-        line-height: 1.6;
-        background: radial-gradient(1200px 700px at 18% -5%, rgba(124, 58, 237, 0.22), transparent 55%),
-          radial-gradient(1100px 700px at 86% 10%, rgba(167, 197, 255, 0.20), transparent 55%),
-          radial-gradient(900px 600px at 50% 90%, rgba(14, 165, 233, 0.12), transparent 50%),
-          linear-gradient(180deg, var(--bg0), var(--bg1));
+        font-size: 16px;
+        line-height: 1.65;
         overflow-x: hidden;
       }
 
-      /* subtle grain */
       body::before {
-        content: "";
+        content: '';
         position: fixed;
         inset: 0;
+        z-index: -1;
         pointer-events: none;
-        opacity: 0.09;
+        opacity: 0.17;
         background-image:
-          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
-        mix-blend-mode: overlay;
+          linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
+        background-size: 72px 72px;
+        mask-image: linear-gradient(to bottom, black, transparent 72%);
       }
 
-      a { color: var(--accent); text-decoration: none; }
-      a:hover { text-decoration: underline; text-underline-offset: 4px; }
+      ::selection { background: rgba(120, 239, 194, 0.28); color: var(--text); }
 
-      .wrap {
-        max-width: 1040px;
-        margin: 0 auto;
-        padding: 26px 18px 84px;
+      a { color: inherit; }
+
+      a:focus-visible,
+      button:focus-visible {
+        outline: 3px solid rgba(120, 239, 194, 0.55);
+        outline-offset: 4px;
+        border-radius: 8px;
       }
 
-      .nav {
-        position: sticky;
+      .skip-link {
+        position: fixed;
         top: 12px;
-        z-index: 10;
+        left: 12px;
+        z-index: 100;
+        transform: translateY(-160%);
+        padding: 10px 14px;
+        color: #062019;
+        background: var(--accent);
+        border-radius: 9px;
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      .skip-link:focus { transform: translateY(0); }
+
+      .shell {
+        width: min(1180px, calc(100% - 36px));
+        margin: 0 auto;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 14px;
+        z-index: 20;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 14px;
-        padding: 12px 14px;
-        border: 1px solid var(--border);
-        border-radius: 16px;
-        background: rgba(10, 14, 28, 0.55);
-        backdrop-filter: blur(14px);
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.28);
+        gap: 24px;
+        margin-top: 14px;
+        padding: 11px 12px 11px 16px;
+        border: 1px solid var(--line);
+        border-radius: 17px;
+        background: rgba(7, 16, 19, 0.78);
+        backdrop-filter: blur(18px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.22);
       }
 
       .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 11px;
+        min-width: max-content;
+        color: var(--text);
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        text-decoration: none;
+      }
+
+      .brand-mark {
+        display: grid;
+        width: 34px;
+        height: 34px;
+        place-items: center;
+        color: #042018;
+        background: var(--accent);
+        border-radius: 10px;
+        font-size: 13px;
+        letter-spacing: -0.04em;
+      }
+
+      .nav-wrap,
+      .nav-links {
+        display: flex;
+        align-items: center;
+      }
+
+      .nav-wrap { gap: 18px; }
+      .nav-links { gap: 4px; }
+
+      .nav-links a {
+        padding: 7px 10px;
+        color: var(--muted);
+        border-radius: 9px;
+        font-size: 13px;
+        font-weight: 600;
+        white-space: nowrap;
+        text-decoration: none;
+      }
+
+      .nav-links a:hover { color: var(--text); background: rgba(255,255,255,.05); }
+
+      .nav-cta,
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+        border: 1px solid var(--line-strong);
+        text-decoration: none;
+        font-weight: 700;
+        transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+      }
+
+      .nav-cta {
+        flex: 0 0 auto;
+        padding: 8px 12px;
+        color: #05241a;
+        background: var(--accent);
+        border-color: var(--accent);
+        border-radius: 10px;
+        font-size: 13px;
+        white-space: nowrap;
+      }
+
+      .nav-cta:hover,
+      .button:hover { transform: translateY(-2px); }
+
+      main { padding: 74px 0 0; }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.35fr) minmax(290px, .65fr);
+        align-items: center;
+        gap: clamp(42px, 7vw, 90px);
+        min-height: 570px;
+        padding: 38px 0 86px;
+      }
+
+      .eyebrow {
         display: flex;
         align-items: center;
         gap: 10px;
-        min-width: 180px;
+        margin: 0 0 20px;
+        color: var(--accent);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: .14em;
+        text-transform: uppercase;
       }
 
-      .avatar {
-        width: 34px;
-        height: 34px;
-        border-radius: 999px;
-        border: 1px solid rgba(255,255,255,.16);
-        box-shadow: 0 10px 30px rgba(0,0,0,.35);
-        object-fit: cover;
-        background: rgba(255,255,255,.06);
+      .eyebrow::before {
+        content: '';
+        width: 28px;
+        height: 1px;
+        background: currentColor;
       }
 
-      .brand strong { font-weight: 700; letter-spacing: -0.02em; }
-      .brand small { display: block; font-size: 12px; color: var(--muted2); margin-top: 1px; }
+      h1,
+      h2,
+      h3,
+      p { margin-top: 0; }
 
-      .navlinks {
+      h1 {
+        max-width: 780px;
+        margin-bottom: 22px;
+        font-family: var(--serif);
+        font-size: clamp(55px, 8.3vw, 102px);
+        font-weight: 600;
+        letter-spacing: -0.058em;
+        line-height: .9;
+      }
+
+      h1 span { color: var(--accent); }
+
+      .hero-lede {
+        max-width: 720px;
+        margin-bottom: 28px;
+        color: var(--muted-strong);
+        font-size: clamp(18px, 2.2vw, 23px);
+        line-height: 1.5;
+        letter-spacing: -0.015em;
+      }
+
+      .hero-lede strong { color: var(--text); font-weight: 600; }
+
+      .button-row {
         display: flex;
-        gap: 12px;
         flex-wrap: wrap;
-        justify-content: flex-end;
-        font-size: 13px;
-        color: var(--muted);
+        gap: 11px;
       }
 
-      .navlinks a {
-        color: var(--muted);
-        padding: 6px 8px;
-        border-radius: 10px;
-        border: 1px solid transparent;
-      }
-      .navlinks a:hover {
+      .button {
+        min-height: 48px;
+        padding: 11px 16px;
         color: var(--text);
-        text-decoration: none;
-        border-color: rgba(255,255,255,.14);
-        background: rgba(255,255,255,.04);
+        background: rgba(255,255,255,.035);
+        border-radius: 12px;
+        font-size: 14px;
       }
 
-      .hero {
-        margin-top: 18px;
-        padding: 26px;
-        border-radius: 20px;
-        border: 1px solid var(--border);
-        background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.045));
-        box-shadow: var(--shadow);
-        overflow: hidden;
+      .button.primary {
+        color: #05241a;
+        background: var(--accent);
+        border-color: var(--accent);
+      }
+
+      .button:hover { border-color: rgba(120,239,194,.45); background: rgba(120,239,194,.08); }
+      .button.primary:hover { background: #91f6d1; }
+
+      .arrow { font-size: 1.05em; line-height: 1; }
+
+      .profile-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+        margin-top: 24px;
+      }
+
+      .profile-links a {
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 600;
+        text-underline-offset: 4px;
+      }
+
+      .portrait-card {
         position: relative;
+        width: min(100%, 370px);
+        justify-self: end;
+        padding: 12px;
+        border: 1px solid var(--line);
+        border-radius: 28px;
+        background: linear-gradient(145deg, rgba(120,239,194,.11), rgba(146,185,255,.06));
+        box-shadow: var(--shadow);
       }
 
-      .hero::after {
-        content: "";
+      .portrait-frame {
+        position: relative;
+        aspect-ratio: .88;
+        overflow: hidden;
+        border-radius: 20px;
+        background: #14242a;
+      }
+
+      .portrait-frame::after {
+        content: '';
         position: absolute;
-        inset: -2px;
-        background:
-          radial-gradient(400px 200px at 10% 0%, rgba(167,197,255,.18), transparent 60%),
-          radial-gradient(420px 260px at 90% 10%, rgba(124,58,237,.16), transparent 60%);
+        inset: 0;
+        box-shadow: inset 0 0 0 1px rgba(255,255,255,.08);
+        border-radius: inherit;
         pointer-events: none;
       }
 
-      .heroGrid {
-        display: grid;
-        grid-template-columns: 1.35fr 0.65fr;
-        gap: 18px;
-        position: relative;
-        z-index: 1;
+      .portrait-frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        filter: saturate(.78) contrast(1.04);
+        transform: scale(1.015);
       }
 
-      h1 {
-        margin: 0;
-        font-family: var(--serif);
-        font-weight: 700;
-        letter-spacing: -0.03em;
-        font-size: clamp(26px, 3.2vw, 42px);
-        line-height: 1.12;
+      .status-card {
+        position: absolute;
+        right: -18px;
+        bottom: 28px;
+        width: min(245px, 78%);
+        padding: 14px 16px;
+        border: 1px solid var(--line-strong);
+        border-radius: 14px;
+        background: rgba(8, 19, 22, .93);
+        box-shadow: 0 18px 45px rgba(0,0,0,.32);
+        backdrop-filter: blur(14px);
       }
 
-      .kicker {
-        display: inline-flex;
+      .status-label {
+        display: flex;
         align-items: center;
-        gap: 10px;
-        font-size: 12px;
-        letter-spacing: 0.14em;
+        gap: 8px;
+        margin-bottom: 3px;
+        color: var(--accent);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: .1em;
         text-transform: uppercase;
-        color: var(--muted);
       }
 
-      .kdot {
-        width: 8px;
-        height: 8px;
-        border-radius: 999px;
-        background: rgba(167,197,255,.9);
-        box-shadow: 0 0 0 5px rgba(167,197,255,.12);
+      .status-label::before {
+        content: '';
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--accent);
+        box-shadow: 0 0 0 5px rgba(120,239,194,.1);
       }
 
-      .subtitle {
-        margin: 12px 0 0;
-        max-width: 70ch;
+      .status-card strong { display: block; font-size: 14px; }
+      .status-card span:last-child { color: var(--muted); font-size: 12px; }
+
+      .section {
+        padding: 88px 0;
+        border-top: 1px solid var(--line);
+      }
+
+      .section-heading {
+        display: grid;
+        grid-template-columns: minmax(0, .7fr) minmax(300px, .55fr);
+        justify-content: space-between;
+        gap: 40px;
+        align-items: end;
+        margin-bottom: 38px;
+      }
+
+      .section-kicker {
+        margin-bottom: 11px;
+        color: var(--accent);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: .13em;
+        text-transform: uppercase;
+      }
+
+      .section-heading h2,
+      .release-copy h2,
+      .contact-copy h2 {
+        margin-bottom: 0;
+        font-family: var(--serif);
+        font-size: clamp(37px, 5.2vw, 64px);
+        font-weight: 600;
+        letter-spacing: -.043em;
+        line-height: 1.04;
+      }
+
+      .section-heading > p {
+        margin-bottom: 3px;
         color: var(--muted);
         font-size: 16px;
       }
 
-      .actions {
-        margin-top: 16px;
-        display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
+      .release {
+        position: relative;
+        overflow: hidden;
+        padding: clamp(24px, 5vw, 58px);
+        border: 1px solid rgba(120,239,194,.25);
+        border-radius: 30px;
+        background:
+          radial-gradient(circle at 95% 0%, rgba(146,185,255,.16), transparent 30rem),
+          linear-gradient(145deg, rgba(120,239,194,.075), rgba(255,255,255,.025));
+        box-shadow: var(--shadow);
       }
 
-      .btn {
+      .release::after {
+        content: 'PS';
+        position: absolute;
+        top: -70px;
+        right: -10px;
+        color: rgba(255,255,255,.022);
+        font-family: var(--serif);
+        font-size: clamp(190px, 25vw, 330px);
+        font-weight: 600;
+        letter-spacing: -.1em;
+        line-height: 1;
+        pointer-events: none;
+      }
+
+      .release-top {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: minmax(0, 1.25fr) minmax(320px, .75fr);
+        gap: 52px;
+        align-items: start;
+      }
+
+      .release-badge {
         display: inline-flex;
         align-items: center;
-        gap: 10px;
-        padding: 10px 12px;
-        border-radius: 12px;
-        border: 1px solid rgba(255,255,255,.14);
-        background: rgba(255,255,255,.04);
-        color: var(--text);
-        font-size: 14px;
-        font-weight: 600;
-        box-shadow: 0 10px 30px rgba(0,0,0,.18);
-      }
-      .btn:hover {
-        text-decoration: none;
-        border-color: rgba(255,255,255,.22);
-        background: rgba(255,255,255,.06);
-      }
-
-      .btn.primary {
-        background: linear-gradient(135deg, rgba(167,197,255,.22), rgba(124,58,237,.18));
-        border-color: rgba(167,197,255,.28);
-        box-shadow: 0 18px 50px rgba(124,58,237,.15);
-      }
-
-      .icon {
-        width: 18px;
-        height: 18px;
-        opacity: 0.9;
-      }
-
-      .side {
-        padding: 14px;
-        border-radius: 16px;
-        border: 1px solid rgba(255,255,255,.12);
-        background: rgba(255,255,255,.035);
-      }
-
-      .side h3 {
-        margin: 0 0 8px;
-        font-size: 13px;
-        color: rgba(255,255,255,.80);
-        letter-spacing: 0.02em;
-      }
-
-      .metaList {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        color: var(--muted);
-        font-size: 13px;
-      }
-      .metaList li { margin: 10px 0; }
-      .metaList strong { color: rgba(255,255,255,.88); font-weight: 600; }
-
-      .pills {
-        margin-top: 14px;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-      }
-
-      .pill {
-        font-size: 12px;
-        color: rgba(255,255,255,.78);
-        border: 1px solid rgba(255,255,255,.12);
-        background: rgba(255,255,255,.03);
-        padding: 6px 10px;
+        gap: 9px;
+        margin-bottom: 22px;
+        padding: 7px 10px;
+        color: var(--accent);
+        border: 1px solid rgba(120,239,194,.26);
         border-radius: 999px;
-      }
-
-      .grid {
-        margin-top: 18px;
-        display: grid;
-        grid-template-columns: repeat(12, 1fr);
-        gap: 14px;
-      }
-
-      .card {
-        border: 1px solid var(--border);
-        border-radius: 18px;
-        padding: 18px;
-        background: rgba(255,255,255,.04);
-        box-shadow: 0 14px 40px rgba(0,0,0,.22);
-      }
-
-      .card h2 {
-        margin: 0 0 10px;
-        font-size: 14px;
-        color: rgba(255,255,255,.86);
-        letter-spacing: 0.12em;
+        background: rgba(120,239,194,.06);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: .1em;
         text-transform: uppercase;
       }
 
-      .card p { margin: 0; color: var(--muted); }
+      .release-badge::before { content: '●'; font-size: 8px; }
 
-      .col-7 { grid-column: span 7; }
-      .col-5 { grid-column: span 5; }
-      .col-6 { grid-column: span 6; }
-      .col-12 { grid-column: span 12; }
-
-      .focusGrid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 12px;
-        margin-top: 12px;
+      .release-copy h2 {
+        max-width: 780px;
+        font-size: clamp(34px, 4.6vw, 59px);
       }
 
-      .mini {
-        border-radius: 16px;
-        border: 1px solid rgba(255,255,255,.12);
-        background: rgba(255,255,255,.03);
-        padding: 14px;
+      .release-summary {
+        max-width: 760px;
+        margin: 22px 0 0;
+        color: var(--muted-strong);
+        font-size: 17px;
       }
 
-      .mini strong {
-        display: block;
-        color: rgba(255,255,255,.9);
-        font-weight: 700;
-        letter-spacing: -0.01em;
-      }
-
-      .mini p { margin: 8px 0 0; color: var(--muted); font-size: 14px; }
-
-      ul.clean {
-        margin: 10px 0 0;
-        padding-left: 16px;
+      .release-byline {
+        margin: 15px 0 0;
         color: var(--muted);
-      }
-      ul.clean li { margin: 8px 0; }
-
-      .pub {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-        padding: 12px 12px;
-        border-radius: 14px;
-        border: 1px solid rgba(255,255,255,.12);
-        background: rgba(255,255,255,.03);
-      }
-
-      .pubTitle { font-weight: 700; color: rgba(255,255,255,.92); }
-      .pubMeta { color: var(--muted2); font-size: 13px; }
-
-      .pubLinks {
-        display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
         font-size: 13px;
-        color: var(--muted);
       }
 
-      .pubLinks a {
-        display: inline-flex;
-        align-items: center;
+      .release-byline strong { color: var(--text); }
+
+      .pipeline {
+        position: relative;
+        padding: 19px;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: rgba(4, 13, 16, .44);
+      }
+
+      .pipeline-label {
+        margin-bottom: 14px;
+        color: var(--muted);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: .12em;
+        text-transform: uppercase;
+      }
+
+      .pipeline-row {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
         gap: 8px;
-        padding: 6px 8px;
+        align-items: center;
+      }
+
+      .pipeline-node {
+        min-width: 0;
+        padding: 11px 10px;
+        border: 1px solid var(--line);
         border-radius: 10px;
-        border: 1px solid rgba(255,255,255,.12);
-        background: rgba(255,255,255,.02);
-        color: rgba(255,255,255,.82);
+        color: var(--muted-strong);
+        background: rgba(255,255,255,.035);
+        font-size: 12px;
+        font-weight: 700;
+        text-align: center;
+      }
+
+      .pipeline-node.accent { color: #062019; border-color: var(--accent); background: var(--accent); }
+      .pipeline-arrow { color: var(--accent); font-size: 14px; }
+
+      .pipeline-stack { display: grid; gap: 8px; }
+
+      .pipeline-note {
+        margin: 14px 0 0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .resource-grid {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 44px;
+      }
+
+      .resource-card {
+        display: flex;
+        min-height: 210px;
+        flex-direction: column;
+        padding: 18px;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: rgba(3, 12, 15, .42);
+        text-decoration: none;
+        transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+      }
+
+      .resource-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(120,239,194,.42);
+        background: rgba(120,239,194,.055);
+      }
+
+      .resource-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: var(--muted);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: .1em;
+        text-transform: uppercase;
+      }
+
+      .resource-head span:first-child { color: var(--accent); }
+      .resource-card h3 { margin: 32px 0 8px; font-size: 18px; letter-spacing: -.025em; }
+      .resource-card p { margin-bottom: 20px; color: var(--muted); font-size: 13px; line-height: 1.55; }
+      .resource-cta { margin-top: auto; color: var(--muted-strong); font-size: 12px; font-weight: 700; }
+
+      .stat-grid {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        margin-top: 14px;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        overflow: hidden;
+      }
+
+      .stat {
+        min-width: 0;
+        padding: 20px;
+        background: rgba(3,12,15,.4);
+      }
+
+      .stat + .stat { border-left: 1px solid var(--line); }
+      .stat strong { display: block; color: var(--text); font-size: clamp(22px, 2.3vw, 30px); letter-spacing: -.04em; }
+      .stat span { display: block; color: var(--muted-strong); font-size: 12px; }
+      .stat small { display: block; margin-top: 3px; color: var(--muted); font-size: 11px; }
+
+      .subresource-row {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 9px 18px;
+        margin-top: 18px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .subresource-row a { color: var(--muted-strong); text-underline-offset: 4px; }
+
+      .finding-grid,
+      .research-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .finding-card,
+      .research-card {
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        background: var(--surface-soft);
+      }
+
+      .finding-card { padding: 25px; }
+      .finding-number { margin-bottom: 28px; color: var(--accent); font-family: var(--serif); font-size: 44px; line-height: 1; letter-spacing: -.045em; }
+      .finding-eyebrow { margin-bottom: 8px; color: var(--muted); font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+      .finding-card h3 { margin-bottom: 10px; font-size: 19px; letter-spacing: -.025em; line-height: 1.3; }
+      .finding-card p { margin-bottom: 0; color: var(--muted); font-size: 13px; }
+
+      .research-card {
+        display: flex;
+        min-height: 315px;
+        flex-direction: column;
+        padding: 26px;
+      }
+
+      .research-index { color: var(--accent); font-family: var(--serif); font-size: 18px; }
+      .research-card h3 { margin: 44px 0 12px; font-size: 23px; letter-spacing: -.03em; }
+      .research-card p { margin-bottom: 24px; color: var(--muted); font-size: 14px; }
+
+      .tag-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+        margin-top: auto;
+      }
+
+      .tag-list span {
+        padding: 5px 8px;
+        color: var(--muted-strong);
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: .03em;
+      }
+
+      .about-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.15fr) minmax(320px, .85fr);
+        gap: 16px;
+      }
+
+      .about-card {
+        padding: clamp(25px, 4vw, 42px);
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        background: var(--surface-soft);
+      }
+
+      .about-card h3 { margin-bottom: 22px; font-family: var(--serif); font-size: 31px; font-weight: 600; letter-spacing: -.035em; }
+      .about-card > p { color: var(--muted-strong); }
+      .about-card > p:last-child { margin-bottom: 0; }
+
+      .timeline { display: grid; gap: 0; }
+
+      .timeline-item {
+        display: grid;
+        grid-template-columns: 84px 1fr;
+        gap: 16px;
+        padding: 18px 0;
+        border-top: 1px solid var(--line);
+      }
+
+      .timeline-item:first-child { padding-top: 0; border-top: 0; }
+      .timeline-year { color: var(--accent); font-size: 12px; font-weight: 700; }
+      .timeline-item strong { display: block; font-size: 14px; }
+      .timeline-item span { color: var(--muted); font-size: 12px; }
+
+      .publication-list { border-top: 1px solid var(--line); }
+
+      .publication {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 28px;
+        align-items: center;
+        padding: 25px 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .publication.featured { padding-left: 18px; border-left: 2px solid var(--accent); }
+      .publication h3 { max-width: 850px; margin: 0 0 7px; font-size: 17px; letter-spacing: -.02em; line-height: 1.45; }
+      .publication p { margin: 0; color: var(--muted); font-size: 12px; }
+
+      .publication-links { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 7px; }
+      .publication-links a {
+        padding: 6px 8px;
+        color: var(--muted-strong);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        font-size: 11px;
+        font-weight: 700;
         text-decoration: none;
       }
-      .pubLinks a:hover {
-        border-color: rgba(255,255,255,.20);
-        background: rgba(255,255,255,.04);
-      }
 
-      .pubGrid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 10px;
-      }
+      .publication-links a:hover { color: var(--text); border-color: rgba(120,239,194,.4); }
 
-      .footer {
-        margin-top: 22px;
-        text-align: center;
-        color: var(--muted2);
+      .view-all {
+        display: inline-flex;
+        gap: 8px;
+        margin-top: 24px;
+        color: var(--accent);
         font-size: 13px;
+        font-weight: 700;
+        text-underline-offset: 4px;
       }
+
+      .contact-panel {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 40px;
+        align-items: center;
+        padding: clamp(30px, 6vw, 64px);
+        border: 1px solid rgba(120,239,194,.26);
+        border-radius: 26px;
+        background: linear-gradient(135deg, rgba(120,239,194,.11), rgba(146,185,255,.055));
+      }
+
+      .contact-copy h2 { font-size: clamp(34px, 5vw, 58px); }
+      .contact-copy p { max-width: 660px; margin: 15px 0 0; color: var(--muted-strong); }
+      .contact-actions { display: grid; gap: 9px; min-width: 215px; }
+
+      footer {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 30px 0 42px;
+        color: var(--muted);
+        font-size: 11px;
+      }
+
+      footer a { color: var(--muted-strong); text-underline-offset: 3px; }
 
       @media (max-width: 980px) {
-        .heroGrid { grid-template-columns: 1fr; }
-        .brand { min-width: 0; }
-        .focusGrid { grid-template-columns: 1fr; }
-        .pubGrid { grid-template-columns: 1fr; }
+        .hero { grid-template-columns: 1fr .58fr; gap: 36px; }
+        .release-top { grid-template-columns: 1fr; }
+        .pipeline { max-width: 620px; }
+        .resource-grid { grid-template-columns: repeat(2, 1fr); }
+        .finding-grid, .research-grid { grid-template-columns: 1fr; }
+        .research-card { min-height: 245px; }
+        .research-card h3 { margin-top: 28px; }
       }
 
-      @media (max-width: 860px) {
-        .col-7, .col-6, .col-5 { grid-column: span 12; }
+      @media (max-width: 800px) {
+        .nav-links { display: none; }
+        .hero { grid-template-columns: 1fr; padding-top: 12px; }
+        .hero-copy { padding-top: 25px; }
+        .portrait-card { width: min(86%, 360px); justify-self: start; }
+        .section-heading { grid-template-columns: 1fr; gap: 18px; }
+        .about-grid { grid-template-columns: 1fr; }
+        .stat-grid { grid-template-columns: repeat(2, 1fr); }
+        .stat:nth-child(3) { border-left: 0; border-top: 1px solid var(--line); }
+        .stat:nth-child(4) { border-top: 1px solid var(--line); }
+        .publication { grid-template-columns: 1fr; gap: 14px; }
+        .publication-links { justify-content: flex-start; }
+        .contact-panel { grid-template-columns: 1fr; }
+        .contact-actions { display: flex; flex-wrap: wrap; min-width: 0; }
+      }
+
+      @media (max-width: 560px) {
+        .shell { width: min(100% - 24px, 1180px); }
+        .topbar { top: 8px; margin-top: 8px; padding-left: 11px; }
+        .brand-mark { width: 32px; height: 32px; }
+        .brand span:last-child { display: none; }
+        .nav-cta { padding: 8px 10px; }
+        main { padding-top: 48px; }
+        .hero { min-height: 0; padding-bottom: 68px; }
+        h1 { font-size: clamp(52px, 19vw, 78px); }
+        .hero-lede { font-size: 17px; }
+        .portrait-card { width: calc(100% - 18px); }
+        .status-card { right: -14px; }
+        .section { padding: 68px 0; }
+        .release { border-radius: 22px; }
+        .release-top { gap: 34px; }
+        .release-copy h2 { font-size: 32px; }
+        .pipeline { padding: 14px; }
+        .pipeline-node { padding-inline: 6px; font-size: 10px; }
+        .resource-grid { grid-template-columns: 1fr; }
+        .resource-card { min-height: 170px; }
+        .resource-card h3 { margin-top: 22px; }
+        .stat-grid { grid-template-columns: 1fr; }
+        .stat + .stat { border-left: 0; border-top: 1px solid var(--line); }
+        .finding-card, .research-card { padding: 21px; }
+        .timeline-item { grid-template-columns: 68px 1fr; }
+        .contact-actions .button { width: 100%; }
+        footer { flex-direction: column; }
       }
 
       @media (prefers-reduced-motion: reduce) {
-        * { scroll-behavior: auto !important; }
+        html { scroll-behavior: auto; }
+        *, *::before, *::after { transition: none !important; }
       }
-
-      html { scroll-behavior: smooth; }
     </style>
   </head>
 
   <body>
-    <div class="wrap">
-      <nav class="nav" aria-label="Primary">
-        <div class="brand">
-          <img class="avatar" src="/assets/avatar.png" alt="Hanbin Hong" width="34" height="34" loading="eager" />
-          <div>
-            <strong>Hanbin Hong</strong>
-            <small>Research Scientist · Trust & Safety / AI Security</small>
-          </div>
-        </div>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-        <div class="navlinks">
-          <a href="#about">About</a>
-          <a href="#focus">Focus</a>
-          <a href="#publications">Publications</a>
-          <a href="#contact">Contact</a>
-        </div>
-      </nav>
+    <div class="shell">
+      <header class="topbar">
+        <a class="brand" href="#top" aria-label="Hanbin Hong — home">
+          <span class="brand-mark" aria-hidden="true">HH</span>
+          <span>Hanbin Hong</span>
+        </a>
 
-      <header class="hero">
-        <div class="heroGrid">
-          <div>
-            <div class="kicker"><span class="kdot" aria-hidden="true"></span>Research Scientist · Trust &amp; Safety / AI Security</div>
-            <h1>Hanbin Hong</h1>
-            <p class="subtitle">
-              Trust &amp; Safety for multimodal models — data, training, and evaluation.
-              <span style="color: var(--muted2)"> </span>
-              Building LLM/VLM-powered video moderation systems, with automated labeling, large-scale datasets, and mid-/post-training.
-            </p>
-
-            <div class="actions">
-              <a class="btn primary" href={links.cv} target="_blank" rel="noreferrer">
-                <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <path d="M12 3v10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-                  <path d="M8.5 10.5 12 13.9l3.5-3.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M6 17.5h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-                </svg>
-                Download CV
-              </a>
-              <a class="btn" href={links.scholar} target="_blank" rel="noreferrer">
-                <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <path d="M4 8.5 12 4l8 4.5-8 4.5L4 8.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
-                  <path d="M6.5 10.4v5.2c0 .7.4 1.4 1 1.7 1.3.7 3 1.2 4.5 1.2s3.2-.5 4.5-1.2c.6-.3 1-.9 1-1.7v-5.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-                </svg>
-                Scholar
-              </a>
-              <a class="btn" href={links.github} target="_blank" rel="noreferrer">
-                <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <path d="M9 19c-4 1.5-4-2.5-5-3m10 5v-3.1c0-.9.3-1.6.8-2.1-2.7-.3-5.6-1.3-5.6-6a4.7 4.7 0 0 1 1.2-3.2 4.3 4.3 0 0 1 .1-3.1s1-.3 3.3 1.2a11.4 11.4 0 0 1 6 0C20.4 4.3 21.4 4.6 21.4 4.6a4.3 4.3 0 0 1 .1 3.1 4.7 4.7 0 0 1 1.2 3.2c0 4.7-2.9 5.7-5.6 6 .5.5.9 1.3.9 2.6V21" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                GitHub
-              </a>
-              <a class="btn" href={`mailto:${links.email}`}>
-                <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <path d="M4.5 7.5h15v9h-15v-9Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
-                  <path d="M4.5 8l7.5 6 7.5-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                Email
-              </a>
-            </div>
-
-            <div class="pills" aria-label="Topics">
-              {pills.map((p) => <span class="pill">{p}</span>)}
-            </div>
-          </div>
-
-          <aside class="side">
-            <h3>Now</h3>
-            <ul class="metaList">
-              <li><strong>TikTok (ByteDance)</strong> — Research Scientist (San Jose)</li>
-              <li><strong>Ph.D.</strong> — University of Connecticut (Aug 2025)</li>
-              <li><strong>Focus</strong> — VLM post-training & video moderation</li>
-              <li><strong>Open</strong> — collaboration on safety eval / red-teaming</li>
-            </ul>
-
-            <div style="height: 12px"></div>
-            <h3>Quick links</h3>
-            <ul class="metaList">
-              <li><a href={links.linkedin} target="_blank" rel="noreferrer">LinkedIn</a></li>
-              <li><a href={links.scholar} target="_blank" rel="noreferrer">Google Scholar</a></li>
-              <li><a href={links.cv} target="_blank" rel="noreferrer">CV.pdf</a></li>
-            </ul>
-          </aside>
+        <div class="nav-wrap">
+          <nav class="nav-links" aria-label="Primary navigation">
+            <a href="#promptsecurity">Featured work</a>
+            <a href="#research">Research</a>
+            <a href="#publications">Publications</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+          </nav>
+          <a class="nav-cta" href={links.leaderboard} target="_blank" rel="noreferrer noopener">
+            Leaderboard <span aria-hidden="true">↗</span>
+          </a>
         </div>
       </header>
 
-      <main class="grid">
-        <section id="about" class="card col-7">
-          <h2>About</h2>
-          <p>
-            I work at the intersection of <strong>Trust &amp; Safety</strong>, <strong>adversarial ML</strong>, and
-            <strong>multimodal model training</strong> — building pipelines that move from <em>research ideas</em> to
-            <em>production-grade systems</em>.
-          </p>
-          <p style="margin-top:10px">
-            I care about measurable reliability: turning ambiguous policy requirements into <strong>datasets</strong>,
-            <strong>training objectives</strong> (mid-/post-training), and <strong>evaluation suites</strong> that are reproducible,
-            auditable, and fast to iterate.
-          </p>
-          <ul class="clean" style="margin-top:10px">
-            <li><strong>Video moderation</strong>: end-to-end automation for review, labeling, and quality control.</li>
-            <li><strong>Model security</strong>: prompt security, red-teaming, and adversarial robustness.</li>
-            <li><strong>Certified robustness</strong>: provable guarantees &amp; verification for safety-critical settings.</li>
-          </ul>
+      <main id="main">
+        <section class="hero" id="top" aria-labelledby="hero-title">
+          <div class="hero-copy">
+            <p class="eyebrow">Research Scientist · AI Safety</p>
+            <h1 id="hero-title">Hanbin <span>Hong</span></h1>
+            <p class="hero-lede">
+              I build <strong>measurable safety for LLMs and multimodal models</strong>—from prompt-security
+              benchmarks and adversarial evaluation to production-scale video moderation and post-training.
+            </p>
+
+            <div class="button-row">
+              <a class="button primary" href="#promptsecurity">
+                Explore PromptSecurity <span class="arrow" aria-hidden="true">↓</span>
+              </a>
+              <a class="button" href={links.cv} target="_blank" rel="noreferrer noopener">
+                Download CV <span class="arrow" aria-hidden="true">↗</span>
+              </a>
+            </div>
+
+            <div class="profile-links" aria-label="Profile links">
+              <a href={links.scholar} target="_blank" rel="noreferrer noopener">Google Scholar</a>
+              <a href={links.github} target="_blank" rel="noreferrer noopener">GitHub</a>
+              <a href={links.linkedin} target="_blank" rel="noreferrer noopener">LinkedIn</a>
+              <a href={`mailto:${links.email}`}>Email</a>
+            </div>
+          </div>
+
+          <div class="portrait-card">
+            <div class="portrait-frame">
+              <img src="/assets/avatar.png" alt="Hanbin Hong" width="512" height="512" loading="eager" />
+            </div>
+            <div class="status-card">
+              <span class="status-label">Currently</span>
+              <strong>Research Scientist @ TikTok</strong>
+              <span>Trust & Safety · San Jose, California</span>
+            </div>
+          </div>
         </section>
 
-        <section class="card col-5">
-          <h2>Background</h2>
-          <ul class="clean">
-            <li><strong>Ph.D.</strong> (CSE), University of Connecticut (Sep 2022–Aug 2025).</li>
-            <li><strong>Ph.D.</strong> (CS), Illinois Institute of Technology (2021–2022).</li>
-            <li><strong>B.S.</strong> Honor Science (Physics), Xi’an Jiaotong University (2014–2018).</li>
-          </ul>
-          <p style="margin-top:10px; color: var(--muted)">
-            Research themes: prompt security, adversarial attacks/defenses, and certified robustness — now applied to large-scale multimodal moderation.
-          </p>
-        </section>
-
-        <section class="card col-6" id="focus">
-          <h2>What I build</h2>
-          <div class="focusGrid">
-            {focus.map((f) => (
-              <div class="mini">
-                <strong>{f.title}</strong>
-                <p>{f.desc}</p>
+        <section class="section" id="promptsecurity" aria-labelledby="release-title">
+          <article class="release">
+            <div class="release-top">
+              <div class="release-copy">
+                <span class="release-badge">New release · arXiv 2025 · updated July 2026</span>
+                <h2 id="release-title">
+                  SoK: Systematizing LLM Prompt Security
+                </h2>
+                <p class="release-summary">
+                  A unified view of jailbreak attacks, defenses, model vulnerabilities, datasets, and evaluation.
+                  The work pairs three linked taxonomies with an auditable protocol, a modular open-source platform,
+                  two public datasets, and an interactive leaderboard.
+                </p>
+                <p class="release-byline">
+                  <strong>Hanbin Hong</strong>, Shuang Wu, Shuya Feng, Nima Naderloui, Shenao Yan, Jingyu Zhang,
+                  Ali Arastehfard, Heqing Huang, and Yuan Hong
+                </p>
               </div>
+
+              <div class="pipeline" aria-label="PromptSecurity evaluation pipeline">
+                <div class="pipeline-label">One auditable experiment tuple</div>
+                <div class="pipeline-stack">
+                  <div class="pipeline-row">
+                    <div class="pipeline-node">Dataset</div>
+                    <span class="pipeline-arrow" aria-hidden="true">→</span>
+                    <div class="pipeline-node">Attack</div>
+                  </div>
+                  <div class="pipeline-row">
+                    <div class="pipeline-node">Defense</div>
+                    <span class="pipeline-arrow" aria-hidden="true">→</span>
+                    <div class="pipeline-node accent">Target LLM</div>
+                  </div>
+                  <div class="pipeline-row">
+                    <div class="pipeline-node">Output</div>
+                    <span class="pipeline-arrow" aria-hidden="true">→</span>
+                    <div class="pipeline-node">Judger</div>
+                  </div>
+                </div>
+                <p class="pipeline-note">
+                  Compare compatible configurations while preserving settings, costs, outputs, and sample-level traces.
+                </p>
+              </div>
+            </div>
+
+            <div class="resource-grid" aria-label="PromptSecurity resources">
+              {releaseResources.map((resource) => (
+                <a class="resource-card" href={resource.href} target="_blank" rel="noreferrer noopener">
+                  <div class="resource-head">
+                    <span>{resource.index}</span>
+                    <span>{resource.label}</span>
+                  </div>
+                  <h3>{resource.title}</h3>
+                  <p>{resource.detail}</p>
+                  <span class="resource-cta">{resource.cta} <span aria-hidden="true">↗</span></span>
+                </a>
+              ))}
+            </div>
+
+            <div class="stat-grid" aria-label="Release scale">
+              {releaseStats.map((stat) => (
+                <div class="stat">
+                  <strong>{stat.value}</strong>
+                  <span>{stat.label}</span>
+                  <small>{stat.note}</small>
+                </div>
+              ))}
+            </div>
+
+            <div class="subresource-row">
+              <span>Release figures from arXiv v3 · Dataset access:</span>
+              <a href={links.jailbreakDb} target="_blank" rel="noreferrer noopener">JailbreakDB ↗</a>
+              <a href={links.evalDataset} target="_blank" rel="noreferrer noopener">PromptSecurity-Eval ↗</a>
+              <a href={links.pdf} target="_blank" rel="noreferrer noopener">Direct PDF ↗</a>
+            </div>
+          </article>
+        </section>
+
+        <section class="section" aria-labelledby="findings-title">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Selected findings</p>
+              <h2 id="findings-title">Security conclusions depend on what—and how—you measure.</h2>
+            </div>
+            <p>
+              Unified evaluation exposes failure modes that single-number rankings often miss: worst-case attacks,
+              safety–utility tradeoffs, and sensitivity to the chosen judger.
+            </p>
+          </div>
+
+          <div class="finding-grid">
+            {findings.map((finding) => (
+              <article class="finding-card">
+                <div class="finding-number">{finding.number}</div>
+                <div class="finding-eyebrow">{finding.eyebrow}</div>
+                <h3>{finding.title}</h3>
+                <p>{finding.description}</p>
+              </article>
             ))}
           </div>
         </section>
 
-        <section class="card col-6" id="publications">
-          <h2>Selected publications</h2>
-          <p>
-            Full list on <a href={links.scholar} target="_blank" rel="noreferrer">Google Scholar</a>.
-          </p>
-          <div style="height: 10px"></div>
-          <div class="pubGrid">
-            {selectedPubs.map((p) => (
-              <div class="pub">
-                <div class="pubTitle">{p.title}</div>
-                <div class="pubMeta">{p.venue} · {p.year}</div>
-                <div class="pubLinks">
-                  {p.links.map((l) => (
-                    <a href={l.href} target="_blank" rel="noreferrer">
-                      {l.label}
-                      <span aria-hidden="true">↗</span>
+        <section class="section" id="research" aria-labelledby="research-title">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Research</p>
+              <h2 id="research-title">From adversarial measurement to real-world safety systems.</h2>
+            </div>
+            <p>
+              My work connects rigorous security evaluation with deployable systems—turning ambiguous safety goals
+              into data, training objectives, measurable protocols, and production workflows.
+            </p>
+          </div>
+
+          <div class="research-grid">
+            {researchAreas.map((area) => (
+              <article class="research-card">
+                <span class="research-index">{area.index}</span>
+                <h3>{area.title}</h3>
+                <p>{area.description}</p>
+                <div class="tag-list" aria-label={`${area.title} topics`}>
+                  {area.tags.map((tag) => <span>{tag}</span>)}
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section class="section" id="about" aria-labelledby="about-title">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">About</p>
+              <h2 id="about-title">Research with an eye toward systems that have to work.</h2>
+            </div>
+            <p>
+              I care about reproducibility, operational constraints, and the gap between a promising metric and a
+              reliable safety mechanism.
+            </p>
+          </div>
+
+          <div class="about-grid">
+            <article class="about-card">
+              <h3>What I work on</h3>
+              <p>
+                I am a Research Scientist at TikTok (ByteDance), working at the intersection of Trust & Safety,
+                multimodal model training, and AI security. I build LLM/VLM-assisted video moderation systems,
+                automated labeling and quality pipelines, and evaluation suites for production models.
+              </p>
+              <p>
+                My academic research spans prompt security, adversarial attacks and defenses, and certified
+                robustness. Across these areas, the common goal is measurable reliability: knowing not only whether
+                a system works on average, but when, why, and at what cost it fails.
+              </p>
+            </article>
+
+            <aside class="about-card" aria-label="Experience and education">
+              <h3>Background</h3>
+              <div class="timeline">
+                <div class="timeline-item">
+                  <span class="timeline-year">Now</span>
+                  <div>
+                    <strong>Research Scientist · TikTok</strong>
+                    <span>Trust & Safety · San Jose</span>
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <span class="timeline-year">2025</span>
+                  <div>
+                    <strong>Ph.D. · University of Connecticut</strong>
+                    <span>Computer Science & Engineering</span>
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <span class="timeline-year">2021–22</span>
+                  <div>
+                    <strong>Ph.D. study · Illinois Tech</strong>
+                    <span>Computer Science</span>
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <span class="timeline-year">2018</span>
+                  <div>
+                    <strong>B.S. · Xi'an Jiaotong University</strong>
+                    <span>Honors Science Program · Physics</span>
+                  </div>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <section class="section" id="publications" aria-labelledby="publications-title">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Selected publications</p>
+              <h2 id="publications-title">AI security, privacy, and robustness.</h2>
+            </div>
+            <p>
+              Selected work across prompt security, certifiable attacks, textual robustness, and randomized
+              smoothing. Visit Google Scholar for the complete list.
+            </p>
+          </div>
+
+          <div class="publication-list">
+            {selectedPubs.map((publication) => (
+              <article class:list={['publication', { featured: publication.featured }]}>
+                <div>
+                  <h3>{publication.title}</h3>
+                  <p>{publication.venue}</p>
+                </div>
+                <div class="publication-links">
+                  {publication.links.map((link) => (
+                    <a href={link.href} target="_blank" rel="noreferrer noopener">
+                      {link.label} <span aria-hidden="true">↗</span>
                     </a>
                   ))}
                 </div>
-              </div>
+              </article>
             ))}
           </div>
+
+          <a class="view-all" href={links.scholar} target="_blank" rel="noreferrer noopener">
+            View all publications on Google Scholar <span aria-hidden="true">↗</span>
+          </a>
         </section>
 
-        <section class="card col-12" id="contact">
-          <h2>Contact</h2>
-          <p>
-            Email: <a href={`mailto:${links.email}`}>{links.email}</a>
-            <span style="color: var(--muted2)"> · </span>
-            <a href={links.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
-            <span style="color: var(--muted2)"> · </span>
-            <a href={links.github} target="_blank" rel="noreferrer">GitHub</a>
-            <span style="color: var(--muted2)"> · </span>
-            <a href={links.scholar} target="_blank" rel="noreferrer">Scholar</a>
-          </p>
+        <section class="section" id="contact" aria-labelledby="contact-title">
+          <div class="contact-panel">
+            <div class="contact-copy">
+              <p class="section-kicker">Let’s connect</p>
+              <h2 id="contact-title">Interested in reliable AI safety evaluation?</h2>
+              <p>
+                I am open to research conversations and collaborations around prompt security, safety evaluation,
+                red teaming, multimodal moderation, and adversarial robustness.
+              </p>
+            </div>
+            <div class="contact-actions">
+              <a class="button primary" href={`mailto:${links.email}`}>Email me</a>
+              <a class="button" href={links.linkedin} target="_blank" rel="noreferrer noopener">LinkedIn ↗</a>
+            </div>
+          </div>
         </section>
       </main>
 
-      <div class="footer">
-        © {new Date().getFullYear()} Hanbin Hong · Built with Astro · Deployed on GitHub Pages
-      </div>
+      <footer>
+        <span>© {new Date().getFullYear()} Hanbin Hong · AI Safety & Prompt Security</span>
+        <span>
+          <a href={`mailto:${links.email}`}>{links.email}</a> · Built with Astro
+        </span>
+      </footer>
     </div>
   </body>
 </html>
