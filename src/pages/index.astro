@@ -1,10 +1,10 @@
 ---
 const meta = {
-  title: 'Hanbin Hong — AI Safety & Prompt Security Researcher',
+  title: 'Hanbin Hong — Content Safety, LLM/VLM Post-Training & AI Security',
   description:
-    'Research Scientist working on LLM/VLM safety, prompt security, video moderation, and adversarial robustness. Explore PromptSecurity, datasets, leaderboard, and publications.',
+    'Research Scientist at TikTok working on scalable LLM/VLM post-training, automated data annotation, and real-world content moderation, with a research background in AI Security.',
   site: 'https://hanbinhong.com',
-  image: 'https://hanbinhong.com/assets/avatar.png',
+  image: 'https://hanbinhong.com/assets/avatar-binary.png',
 };
 
 const links = {
@@ -40,14 +40,22 @@ const releaseResources = [
   },
   {
     index: '03',
-    label: 'Datasets',
-    title: 'Use the released data',
-    detail: 'JailbreakDB and PromptSecurity-Eval on Hugging Face.',
+    label: 'JailbreakDB',
+    title: 'Explore the corpus',
+    detail: 'A consolidated resource for jailbreak and benign prompts.',
     href: links.jailbreakDb,
-    cta: 'View datasets',
+    cta: 'View on Hugging Face',
   },
   {
     index: '04',
+    label: 'Evaluation data',
+    title: 'Inspect the records',
+    detail: 'PromptSecurity-Eval harmfulness and utility results.',
+    href: links.evalDataset,
+    cta: 'View on Hugging Face',
+  },
+  {
+    index: '05',
     label: 'Open source',
     title: 'Run PromptSecurity',
     detail: 'Compose models, attacks, defenses, data, and judgers.',
@@ -60,7 +68,7 @@ const releaseStats = [
   { value: '445,752', label: 'jailbreak prompt pairs', note: 'from 48 sources' },
   { value: '1.09M', label: 'benign prompts', note: 'from 14 sources' },
   { value: '175,400', label: 'evaluation records', note: 'harmful + benign utility' },
-  { value: '11 × 21 × 10', label: 'models · attacks · defenses', note: 'with 3 judgers' },
+  { value: '11 · 21 · 10', label: 'models · attack settings · defense states', note: 'with 3 judgers' },
 ];
 
 const findings = [
@@ -90,24 +98,24 @@ const findings = [
 const researchAreas = [
   {
     index: 'A',
-    title: 'Prompt security & evaluation',
+    title: 'Post-training for Content Safety',
     description:
-      'Taxonomy-grounded red teaming, auditable attack–defense evaluation, automated judgers, and cost-aware benchmarking.',
-    tags: ['Jailbreaks', 'Red teaming', 'Safety evals'],
+      'Develop data-centric approaches for scaling LLM/VLM post-training in large-scale, long-tail content moderation scenarios.',
+    tags: ['LLM/VLM post-training', 'Long-tail moderation', 'Data-centric ML'],
   },
   {
     index: 'B',
-    title: 'Multimodal Trust & Safety',
+    title: 'Automated data & supervision systems',
     description:
-      'LLM/VLM-powered video moderation, large-scale labeling pipelines, model training, and reliable policy enforcement.',
-    tags: ['Video moderation', 'VLMs', 'Post-training'],
+      'Build large-scale automated annotation, quality-control, and data-processing systems that transform real-world content and model feedback into reliable training signals.',
+    tags: ['Automated annotation', 'Scalable supervision', 'Data flywheels'],
   },
   {
     index: 'C',
-    title: 'Adversarial robustness',
+    title: 'AI Security research',
     description:
-      'Attacks, defenses, randomized smoothing, and provable guarantees for safety-critical machine learning systems.',
-    tags: ['Certified ML', 'Model security', 'Verification'],
+      'Study prompt security, adversarial attacks and defenses, security evaluation, and certified robustness for machine learning systems.',
+    tags: ['Prompt security', 'Adversarial ML', 'Certified robustness'],
   },
 ];
 
@@ -119,7 +127,8 @@ const selectedPubs = [
     links: [
       { label: 'Paper', href: links.paper },
       { label: 'Leaderboard', href: links.leaderboard },
-      { label: 'Data', href: links.jailbreakDb },
+      { label: 'JailbreakDB', href: links.jailbreakDb },
+      { label: 'Eval data', href: links.evalDataset },
       { label: 'Code', href: links.promptSecurity },
     ],
   },
@@ -160,7 +169,7 @@ const structuredData = {
   jobTitle: 'Research Scientist',
   worksFor: {
     '@type': 'Organization',
-    name: 'TikTok (ByteDance)',
+    name: 'TikTok',
   },
   email: `mailto:${links.email}`,
   alumniOf: {
@@ -169,9 +178,11 @@ const structuredData = {
   },
   sameAs: [links.linkedin, links.github, links.scholar],
   knowsAbout: [
-    'AI Safety',
+    'Content Safety',
+    'LLM/VLM Post-Training',
+    'Automated Data Annotation',
     'Prompt Security',
-    'Multimodal Models',
+    'AI Security',
     'Adversarial Machine Learning',
     'Certified Robustness',
   ],
@@ -195,12 +206,16 @@ const structuredData = {
     <meta property="og:type" content="website" />
     <meta property="og:url" content={meta.site} />
     <meta property="og:image" content={meta.image} />
-    <meta property="og:image:alt" content="Portrait of Hanbin Hong" />
+    <meta property="og:image:alt" content="Binary portrait of Hanbin Hong" />
+    <meta property="og:image:width" content="1254" />
+    <meta property="og:image:height" content="1254" />
+    <meta property="og:image:type" content="image/png" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={meta.title} />
     <meta name="twitter:description" content={meta.description} />
     <meta name="twitter:image" content={meta.image} />
+    <meta name="twitter:image:alt" content="Binary portrait of Hanbin Hong" />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -495,7 +510,7 @@ const structuredData = {
 
       .portrait-frame {
         position: relative;
-        aspect-ratio: .88;
+        aspect-ratio: 1;
         overflow: hidden;
         border-radius: 20px;
         background: #14242a;
@@ -515,8 +530,6 @@ const structuredData = {
         height: 100%;
         object-fit: cover;
         object-position: center;
-        filter: saturate(.78) contrast(1.04);
-        transform: scale(1.015);
       }
 
       .status-card {
@@ -654,6 +667,18 @@ const structuredData = {
         font-size: clamp(34px, 4.6vw, 59px);
       }
 
+      .release-subtitle {
+        display: block;
+        max-width: 700px;
+        margin-top: 14px;
+        color: var(--muted-strong);
+        font-family: var(--sans);
+        font-size: clamp(15px, 1.7vw, 20px);
+        font-weight: 600;
+        letter-spacing: -.015em;
+        line-height: 1.4;
+      }
+
       .release-summary {
         max-width: 760px;
         margin: 22px 0 0;
@@ -720,7 +745,7 @@ const structuredData = {
         position: relative;
         z-index: 1;
         display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
         gap: 12px;
         margin-top: 44px;
       }
@@ -799,6 +824,57 @@ const structuredData = {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 14px;
+      }
+
+      .work-flow {
+        margin-top: 18px;
+        padding: 18px;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: rgba(3, 12, 15, .35);
+      }
+
+      .work-flow-label {
+        margin: 0 0 14px;
+        color: var(--muted);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: .12em;
+        text-transform: uppercase;
+      }
+
+      .work-flow-list {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 22px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .work-flow-list li {
+        position: relative;
+        display: grid;
+        min-height: 64px;
+        place-items: center;
+        padding: 10px;
+        color: var(--muted-strong);
+        border: 1px solid var(--line);
+        border-radius: 11px;
+        background: rgba(255,255,255,.03);
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 1.35;
+        text-align: center;
+      }
+
+      .work-flow-list li:not(:last-child)::after {
+        content: '→';
+        position: absolute;
+        top: 50%;
+        right: -18px;
+        color: var(--accent);
+        transform: translateY(-50%);
       }
 
       .finding-card,
@@ -962,6 +1038,13 @@ const structuredData = {
         .publication-links { justify-content: flex-start; }
         .contact-panel { grid-template-columns: 1fr; }
         .contact-actions { display: flex; flex-wrap: wrap; min-width: 0; }
+        .work-flow-list { grid-template-columns: 1fr; gap: 27px; }
+        .work-flow-list li:not(:last-child)::after {
+          top: auto;
+          right: 50%;
+          bottom: -22px;
+          transform: translateX(50%) rotate(90deg);
+        }
       }
 
       @media (max-width: 560px) {
@@ -975,7 +1058,7 @@ const structuredData = {
         h1 { font-size: clamp(52px, 19vw, 78px); }
         .hero-lede { font-size: 17px; }
         .portrait-card { width: calc(100% - 18px); }
-        .status-card { right: -14px; }
+        .status-card { right: 0; }
         .section { padding: 68px 0; }
         .release { border-radius: 22px; }
         .release-top { gap: 34px; }
@@ -1012,8 +1095,8 @@ const structuredData = {
 
         <div class="nav-wrap">
           <nav class="nav-links" aria-label="Primary navigation">
+            <a href="#work">What I work on</a>
             <a href="#promptsecurity">Featured work</a>
-            <a href="#research">Research</a>
             <a href="#publications">Publications</a>
             <a href="#about">About</a>
             <a href="#contact">Contact</a>
@@ -1027,16 +1110,20 @@ const structuredData = {
       <main id="main">
         <section class="hero" id="top" aria-labelledby="hero-title">
           <div class="hero-copy">
-            <p class="eyebrow">Research Scientist · AI Safety</p>
+            <p class="eyebrow">Research Scientist · Content Safety</p>
             <h1 id="hero-title">Hanbin <span>Hong</span></h1>
             <p class="hero-lede">
-              I build <strong>measurable safety for LLMs and multimodal models</strong>—from prompt-security
-              benchmarks and adversarial evaluation to production-scale video moderation and post-training.
+              I work on <strong>scaling LLM/VLM post-training for real-world content moderation</strong> through
+              large-scale automated data annotation, data engineering, and iterative model evaluation. My research
+              background is in AI Security, including prompt security, adversarial machine learning, and certified robustness.
             </p>
 
             <div class="button-row">
-              <a class="button primary" href="#promptsecurity">
-                Explore PromptSecurity <span class="arrow" aria-hidden="true">↓</span>
+              <a class="button primary" href="#work">
+                Explore my work <span class="arrow" aria-hidden="true">↓</span>
+              </a>
+              <a class="button" href="#promptsecurity">
+                Featured research <span class="arrow" aria-hidden="true">↓</span>
               </a>
               <a class="button" href={links.cv} target="_blank" rel="noreferrer noopener">
                 Download CV <span class="arrow" aria-hidden="true">↗</span>
@@ -1053,23 +1140,81 @@ const structuredData = {
 
           <div class="portrait-card">
             <div class="portrait-frame">
-              <img src="/assets/avatar.png" alt="Hanbin Hong" width="512" height="512" loading="eager" />
+              <img
+                src="/assets/avatar-binary.png"
+                alt="Binary portrait of Hanbin Hong"
+                width="1254"
+                height="1254"
+                loading="eager"
+              />
             </div>
             <div class="status-card">
               <span class="status-label">Currently</span>
               <strong>Research Scientist @ TikTok</strong>
-              <span>Trust & Safety · San Jose, California</span>
+              <span>Content Safety · San Jose, California</span>
             </div>
           </div>
         </section>
 
-        <section class="section" id="promptsecurity" aria-labelledby="release-title">
+        <section class="section" id="work" aria-labelledby="work-title">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">What I work on</p>
+              <h2 id="work-title">Building scalable model and data systems for Content Safety.</h2>
+            </div>
+            <p>
+              My current work focuses on how LLM/VLM post-training can scale through better supervision,
+              training-data construction, difficult-example discovery, and iterative evaluation. This work builds
+              on my broader research experience in machine learning security and robustness.
+            </p>
+          </div>
+
+          <div class="research-grid">
+            {researchAreas.map((area) => (
+              <article class="research-card">
+                <span class="research-index">{area.index}</span>
+                <h3>{area.title}</h3>
+                <p>{area.description}</p>
+                <div class="tag-list" aria-label={`${area.title} topics`}>
+                  {area.tags.map((tag) => <span>{tag}</span>)}
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <div class="work-flow" aria-label="Content Safety model and data workflow">
+            <p class="work-flow-label">From real-world content to continuous improvement</p>
+            <ol class="work-flow-list">
+              <li>Real-world content</li>
+              <li>Automated supervision</li>
+              <li>Training data at scale</li>
+              <li>LLM/VLM post-training</li>
+              <li>Evaluation and iteration</li>
+            </ol>
+          </div>
+        </section>
+
+        <section class="section" id="promptsecurity" aria-labelledby="featured-title">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Featured work · PromptSecurity</p>
+              <h2 id="featured-title">Featured research in systematic LLM security evaluation.</h2>
+            </div>
+            <p>
+              My experience in systematic security evaluation informs how I think about measurement, reliability,
+              and failure analysis in real-world model systems.
+            </p>
+          </div>
+
           <article class="release">
             <div class="release-top">
               <div class="release-copy">
-                <span class="release-badge">New release · arXiv 2025 · updated July 2026</span>
+                <span class="release-badge">Featured research · arXiv v3 · July 2026</span>
                 <h2 id="release-title">
                   SoK: Systematizing LLM Prompt Security
+                  <span class="release-subtitle">
+                    Taxonomies, Datasets, and Unified Evaluation of Attacks and Defenses
+                  </span>
                 </h2>
                 <p class="release-summary">
                   A unified view of jailbreak attacks, defenses, model vulnerabilities, datasets, and evaluation.
@@ -1164,100 +1309,11 @@ const structuredData = {
           </div>
         </section>
 
-        <section class="section" id="research" aria-labelledby="research-title">
-          <div class="section-heading">
-            <div>
-              <p class="section-kicker">Research</p>
-              <h2 id="research-title">From adversarial measurement to real-world safety systems.</h2>
-            </div>
-            <p>
-              My work connects rigorous security evaluation with deployable systems—turning ambiguous safety goals
-              into data, training objectives, measurable protocols, and production workflows.
-            </p>
-          </div>
-
-          <div class="research-grid">
-            {researchAreas.map((area) => (
-              <article class="research-card">
-                <span class="research-index">{area.index}</span>
-                <h3>{area.title}</h3>
-                <p>{area.description}</p>
-                <div class="tag-list" aria-label={`${area.title} topics`}>
-                  {area.tags.map((tag) => <span>{tag}</span>)}
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section class="section" id="about" aria-labelledby="about-title">
-          <div class="section-heading">
-            <div>
-              <p class="section-kicker">About</p>
-              <h2 id="about-title">Research with an eye toward systems that have to work.</h2>
-            </div>
-            <p>
-              I care about reproducibility, operational constraints, and the gap between a promising metric and a
-              reliable safety mechanism.
-            </p>
-          </div>
-
-          <div class="about-grid">
-            <article class="about-card">
-              <h3>What I work on</h3>
-              <p>
-                I am a Research Scientist at TikTok (ByteDance), working at the intersection of Trust & Safety,
-                multimodal model training, and AI security. I build LLM/VLM-assisted video moderation systems,
-                automated labeling and quality pipelines, and evaluation suites for production models.
-              </p>
-              <p>
-                My academic research spans prompt security, adversarial attacks and defenses, and certified
-                robustness. Across these areas, the common goal is measurable reliability: knowing not only whether
-                a system works on average, but when, why, and at what cost it fails.
-              </p>
-            </article>
-
-            <aside class="about-card" aria-label="Experience and education">
-              <h3>Background</h3>
-              <div class="timeline">
-                <div class="timeline-item">
-                  <span class="timeline-year">Now</span>
-                  <div>
-                    <strong>Research Scientist · TikTok</strong>
-                    <span>Trust & Safety · San Jose</span>
-                  </div>
-                </div>
-                <div class="timeline-item">
-                  <span class="timeline-year">2025</span>
-                  <div>
-                    <strong>Ph.D. · University of Connecticut</strong>
-                    <span>Computer Science & Engineering</span>
-                  </div>
-                </div>
-                <div class="timeline-item">
-                  <span class="timeline-year">2021–22</span>
-                  <div>
-                    <strong>Ph.D. study · Illinois Tech</strong>
-                    <span>Computer Science</span>
-                  </div>
-                </div>
-                <div class="timeline-item">
-                  <span class="timeline-year">2018</span>
-                  <div>
-                    <strong>B.S. · Xi'an Jiaotong University</strong>
-                    <span>Honors Science Program · Physics</span>
-                  </div>
-                </div>
-              </div>
-            </aside>
-          </div>
-        </section>
-
         <section class="section" id="publications" aria-labelledby="publications-title">
           <div class="section-heading">
             <div>
               <p class="section-kicker">Selected publications</p>
-              <h2 id="publications-title">AI security, privacy, and robustness.</h2>
+              <h2 id="publications-title">AI security and robustness.</h2>
             </div>
             <p>
               Selected work across prompt security, certifiable attacks, textual robustness, and randomized
@@ -1288,14 +1344,76 @@ const structuredData = {
           </a>
         </section>
 
+        <section class="section" id="about" aria-labelledby="about-title">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">About and background</p>
+              <h2 id="about-title">A research foundation for reliable model systems.</h2>
+            </div>
+            <p>
+              Across industry and academia, I am interested in how better data, supervision, and evaluation can make
+              machine learning systems more reliable in practice.
+            </p>
+          </div>
+
+          <div class="about-grid">
+            <article class="about-card">
+              <h3>Current work and research background</h3>
+              <p>
+                I am a Research Scientist at TikTok working on Content Safety, with a focus on scaling LLM/VLM
+                post-training through large-scale automated data annotation, data engineering, and model evaluation.
+              </p>
+              <p>
+                My research background spans prompt security, adversarial machine learning, and certified robustness.
+                Across these areas, I am interested in how better data, supervision, and evaluation can make machine
+                learning systems more reliable in practice.
+              </p>
+            </article>
+
+            <aside class="about-card" aria-label="Experience and education">
+              <h3>Background</h3>
+              <div class="timeline">
+                <div class="timeline-item">
+                  <span class="timeline-year">Now</span>
+                  <div>
+                    <strong>Research Scientist · TikTok</strong>
+                    <span>Content Safety · San Jose</span>
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <span class="timeline-year">2025</span>
+                  <div>
+                    <strong>Ph.D. · University of Connecticut</strong>
+                    <span>Computer Science & Engineering</span>
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <span class="timeline-year">2021–22</span>
+                  <div>
+                    <strong>Ph.D. study · Illinois Tech</strong>
+                    <span>Computer Science</span>
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <span class="timeline-year">2018</span>
+                  <div>
+                    <strong>B.S. · Xi'an Jiaotong University</strong>
+                    <span>Honors Science Program · Physics</span>
+                  </div>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </section>
+
         <section class="section" id="contact" aria-labelledby="contact-title">
           <div class="contact-panel">
             <div class="contact-copy">
-              <p class="section-kicker">Let’s connect</p>
-              <h2 id="contact-title">Interested in reliable AI safety evaluation?</h2>
+              <p class="section-kicker">Contact</p>
+              <h2 id="contact-title">Let’s connect.</h2>
               <p>
-                I am open to research conversations and collaborations around prompt security, safety evaluation,
-                red teaming, multimodal moderation, and adversarial robustness.
+                I am open to conversations about LLM/VLM post-training, automated data annotation, data-centric model
+                development, Content Safety, prompt security, and adversarial machine learning.
               </p>
             </div>
             <div class="contact-actions">
@@ -1307,7 +1425,7 @@ const structuredData = {
       </main>
 
       <footer>
-        <span>© {new Date().getFullYear()} Hanbin Hong · AI Safety & Prompt Security</span>
+        <span>© {new Date().getFullYear()} Hanbin Hong · Content Safety · LLM/VLM Post-Training · AI Security</span>
         <span>
           <a href={`mailto:${links.email}`}>{links.email}</a> · Built with Astro
         </span>
