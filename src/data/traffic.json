@@ -1,0 +1,13 @@
+{
+  "status": "pending",
+  "windowDays": 30,
+  "generatedAt": null,
+  "rangeStart": null,
+  "rangeEnd": null,
+  "estimated": false,
+  "sampleInterval": 1,
+  "visits": 0,
+  "pageViews": 0,
+  "countries": [],
+  "referrers": []
+}

@@ -1,0 +1,520 @@
+---
+import { geoEqualEarth, geoGraticule10, geoPath } from 'd3-geo';
+import isoCountries from 'i18n-iso-countries';
+import { feature } from 'topojson-client';
+import worldAtlas from 'world-atlas/countries-110m.json';
+import traffic from '../data/traffic.json';
+
+type CountryTraffic = {
+  code: string;
+  visits: number;
+  pageViews: number;
+};
+
+type ReferrerTraffic = {
+  host: string;
+  visits: number;
+  pageViews: number;
+};
+
+const ready = traffic.status === 'ready';
+const countries = (traffic.countries as CountryTraffic[]) || [];
+const referrers = (traffic.referrers as ReferrerTraffic[]) || [];
+const countryTraffic = new Map(countries.map((country) => [country.code, country]));
+
+const world = feature(worldAtlas as any, (worldAtlas as any).objects.countries) as any;
+const mapFeatures = world.features
+  .filter((country: any) => String(country.id).padStart(3, '0') !== '010')
+  .map((country: any) => {
+    const numericCode = String(country.id).padStart(3, '0');
+    const code = isoCountries.numericToAlpha2(numericCode) || '';
+    return {
+      ...country,
+      code,
+      name: country.properties?.name || code,
+    };
+  });
+
+const projection = geoEqualEarth().fitExtent(
+  [
+    [12, 14],
+    [808, 396],
+  ],
+  { type: 'FeatureCollection', features: mapFeatures } as any,
+);
+const path = geoPath(projection);
+const spherePath = path({ type: 'Sphere' } as any) || '';
+const graticulePath = path(geoGraticule10() as any) || '';
+const maxCountryValue = Math.max(
+  1,
+  ...countries.map((country) => country.visits || country.pageViews),
+);
+
+const mappedCountries = mapFeatures.map((country: any) => {
+  const value = countryTraffic.get(country.code);
+  const trafficValue = value?.visits || value?.pageViews || 0;
+  const intensity = trafficValue
+    ? 0.24 + (Math.log1p(trafficValue) / Math.log1p(maxCountryValue)) * 0.68
+    : 0;
+
+  return {
+    ...country,
+    d: path(country) || '',
+    traffic: value,
+    fill: trafficValue ? `rgba(120, 239, 194, ${intensity.toFixed(3)})` : '',
+  };
+});
+
+const visibleCountryCount = countries.length;
+const referrerTotal = Math.max(1, referrers.reduce((sum, item) => sum + item.visits, 0));
+const topReferrers = referrers.slice(0, 4).map((item) => ({
+  ...item,
+  share: Math.max(3, Math.round((item.visits / referrerTotal) * 100)),
+}));
+
+const publicCount = (value: number) => {
+  if (!ready) return '—';
+  if (value === 0) return '0';
+  if (value < 10) return '<10';
+  if (value < 1000) return new Intl.NumberFormat('en-US').format(Math.round(value / 5) * 5);
+  return new Intl.NumberFormat('en-US', {
+    notation: 'compact',
+    maximumFractionDigits: 1,
+  }).format(value);
+};
+
+const refreshLabel =
+  ready && traffic.generatedAt
+    ? `updated ${new Intl.DateTimeFormat('en-US', {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric',
+        timeZone: 'UTC',
+      }).format(new Date(traffic.generatedAt))}`
+    : 'first refresh pending';
+---
+
+<aside class="reach-panel" aria-labelledby="reach-title">
+  <div class="reach-copy">
+    <p class="section-kicker">Global reach</p>
+    <h3 id="reach-title">Where this work is being read.</h3>
+    <p class="reach-intro">
+      A privacy-conscious view of aggregated traffic to hanbinhong.com. Country-level patterns and referrer hosts
+      update daily without exposing individual visitors.
+    </p>
+
+    <div class="reach-tags" aria-label="Analytics privacy and scope">
+      <span>{traffic.windowDays}-day window</span>
+      <span>Country level</span>
+      <span>No precise location</span>
+    </div>
+
+    <dl class="reach-stats" aria-label={`Traffic in the last ${traffic.windowDays} days`}>
+      <div>
+        <dt>Visits</dt>
+        <dd>{publicCount(traffic.visits)}</dd>
+      </div>
+      <div>
+        <dt>Page views</dt>
+        <dd>{publicCount(traffic.pageViews)}</dd>
+      </div>
+      <div>
+        <dt>Countries shown</dt>
+        <dd>{ready ? visibleCountryCount : '—'}</dd>
+      </div>
+    </dl>
+
+    <div class="source-block">
+      <div class="source-heading">
+        <span>Top sources</span>
+        <small>by visits</small>
+      </div>
+      {
+        topReferrers.length > 0 ? (
+          <ol class="source-list">
+            {topReferrers.map((source) => (
+              <li>
+                <span>{source.host}</span>
+                <span class="source-track" aria-hidden="true">
+                  <span style={`width:${source.share}%`}></span>
+                </span>
+              </li>
+            ))}
+          </ol>
+        ) : (
+          <p class="source-empty">
+            {ready ? 'No publishable referral aggregate yet.' : 'Available after the first scheduled refresh.'}
+          </p>
+        )
+      }
+    </div>
+  </div>
+
+  <figure class="reach-map">
+    <div class="map-frame" data-status={traffic.status}>
+      <svg
+        viewBox="0 0 820 410"
+        role="img"
+        aria-labelledby="reach-map-title reach-map-description"
+        preserveAspectRatio="xMidYMid meet"
+      >
+        <title id="reach-map-title">Aggregated visitor countries for hanbinhong.com</title>
+        <desc id="reach-map-description">
+          Countries with at least three measured page views during the last {traffic.windowDays} days are highlighted.
+        </desc>
+        <path class="map-sphere" d={spherePath}></path>
+        <path class="map-graticule" d={graticulePath}></path>
+        {
+          mappedCountries.map((country: any) => (
+            <path
+              class:list={['map-country', { active: Boolean(country.traffic) }]}
+              d={country.d}
+              style={country.fill ? `--country-fill:${country.fill}` : undefined}
+              aria-hidden="true"
+            >
+              {country.traffic && (
+                <title>
+                  {country.name}: {publicCount(country.traffic.visits)} visits
+                </title>
+              )}
+            </path>
+          ))
+        }
+      </svg>
+
+      {
+        !ready && (
+          <div class="map-pending">
+            <span></span>
+            Collecting aggregate data
+          </div>
+        )
+      }
+    </div>
+
+    <figcaption>
+      <span>
+        Last {traffic.windowDays} days · Cloudflare Web Analytics · {refreshLabel}
+        {traffic.estimated ? ' · estimated from sampled aggregates' : ''}
+      </span>
+      <span class="map-legend" aria-label="Map intensity legend">
+        <i></i>
+        More visits
+      </span>
+    </figcaption>
+    <p class="privacy-note">Low-volume country and referrer buckets are suppressed.</p>
+  </figure>
+</aside>
+
+<style>
+  .reach-panel {
+    display: grid;
+    grid-template-columns: minmax(270px, 0.54fr) minmax(0, 1.46fr);
+    gap: clamp(28px, 4vw, 54px);
+    align-items: center;
+    margin-top: 16px;
+    padding: clamp(25px, 4vw, 42px);
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    background:
+      radial-gradient(circle at 92% 4%, rgba(146, 185, 255, 0.08), transparent 23rem),
+      var(--surface-soft);
+  }
+
+  .reach-copy h3 {
+    max-width: 420px;
+    margin: 0 0 16px;
+    font-family: var(--serif);
+    font-size: clamp(30px, 3.1vw, 42px);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1.08;
+  }
+
+  .reach-intro {
+    margin: 0;
+    color: var(--muted-strong);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .reach-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: 20px;
+  }
+
+  .reach-tags span {
+    padding: 5px 8px;
+    color: var(--muted);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.055em;
+    text-transform: uppercase;
+  }
+
+  .reach-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin: 24px 0 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .reach-stats div {
+    min-width: 0;
+    padding: 14px 10px 14px 0;
+  }
+
+  .reach-stats div + div {
+    padding-left: 12px;
+    border-left: 1px solid var(--line);
+  }
+
+  .reach-stats dt {
+    color: var(--muted);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .reach-stats dd {
+    margin: 4px 0 0;
+    color: var(--text);
+    font-family: var(--serif);
+    font-size: clamp(20px, 2vw, 27px);
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    line-height: 1;
+  }
+
+  .source-block {
+    margin-top: 22px;
+  }
+
+  .source-heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 14px;
+    margin-bottom: 11px;
+    color: var(--muted-strong);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .source-heading small {
+    color: var(--muted);
+    font-size: 9px;
+    font-weight: 600;
+  }
+
+  .source-list {
+    display: grid;
+    gap: 9px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .source-list li {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 72px;
+    gap: 12px;
+    align-items: center;
+    color: var(--muted);
+    font-size: 11px;
+  }
+
+  .source-list li > span:first-child {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .source-track {
+    display: block;
+    height: 3px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.07);
+  }
+
+  .source-track span {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, var(--blue), var(--accent));
+  }
+
+  .source-empty {
+    margin: 0;
+    color: var(--muted);
+    font-size: 11px;
+  }
+
+  .reach-map {
+    min-width: 0;
+    margin: 0;
+  }
+
+  .map-frame {
+    position: relative;
+    display: grid;
+    min-height: 280px;
+    place-items: center;
+    overflow: hidden;
+    border: 1px solid rgba(226, 242, 239, 0.1);
+    border-radius: 16px;
+    background:
+      radial-gradient(circle at 70% 36%, rgba(120, 239, 194, 0.055), transparent 18rem),
+      rgba(3, 12, 15, 0.48);
+  }
+
+  .map-frame svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .map-sphere {
+    fill: rgba(146, 185, 255, 0.018);
+    stroke: rgba(226, 242, 239, 0.08);
+    stroke-width: 0.8;
+  }
+
+  .map-graticule {
+    fill: none;
+    stroke: rgba(226, 242, 239, 0.045);
+    stroke-width: 0.55;
+  }
+
+  .map-country {
+    fill: rgba(226, 242, 239, 0.07);
+    stroke: rgba(7, 16, 19, 0.9);
+    stroke-width: 0.45;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .map-country.active {
+    fill: var(--country-fill);
+    stroke: rgba(7, 16, 19, 0.98);
+  }
+
+  .map-pending {
+    position: absolute;
+    bottom: 14px;
+    left: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 10px;
+    color: var(--muted-strong);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: rgba(7, 16, 19, 0.82);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .map-pending span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  figcaption {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 12px;
+    color: var(--muted);
+    font-size: 10px;
+    line-height: 1.45;
+  }
+
+  .map-legend {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .map-legend i {
+    width: 46px;
+    height: 4px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, rgba(120, 239, 194, 0.2), rgba(120, 239, 194, 0.95));
+  }
+
+  .privacy-note {
+    margin: 5px 0 0;
+    color: var(--muted);
+    font-size: 9px;
+  }
+
+  @media (max-width: 900px) {
+    .reach-panel {
+      grid-template-columns: 1fr;
+    }
+
+    .reach-copy h3 {
+      max-width: 620px;
+    }
+
+    .reach-intro {
+      max-width: 680px;
+    }
+
+    .source-list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: 26px;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .reach-panel {
+      gap: 24px;
+      padding: 21px;
+    }
+
+    .reach-stats {
+      grid-template-columns: 1fr;
+    }
+
+    .reach-stats div {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      padding: 11px 0;
+    }
+
+    .reach-stats div + div {
+      padding-left: 0;
+      border-top: 1px solid var(--line);
+      border-left: 0;
+    }
+
+    .source-list {
+      grid-template-columns: 1fr;
+    }
+
+    .map-frame {
+      min-height: 220px;
+    }
+
+    figcaption {
+      flex-direction: column;
+      gap: 7px;
+    }
+  }
+</style>
