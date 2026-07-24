@@ -9,7 +9,7 @@ Cloudflare credentials or raw visitor records.
 
 To enable the daily refresh, add these GitHub repository secrets:
 
-- `CLOUDFLARE_ANALYTICS_API_TOKEN`: a read-only token with **Account → Account Analytics → Read** for the relevant
+- `CLOUDFLARE_ANALYTICS_API_TOKEN_ROTATED`: a read-only token with **Account → Account Analytics → Read** for the relevant
   Cloudflare account.
 - `CLOUDFLARE_ACCOUNT_ID`: the Cloudflare account ID that owns the Web Analytics site.
 
